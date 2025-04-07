@@ -27,7 +27,7 @@ header {
 header nav ul {
     list-style: none;
     display: flex;
-    flex-direction: column; /* odkazy pod sebou */
+    flex-direction: row; /* odkazy pod sebou */
     align-items: center;
     gap: 15px;
     padding: 20px 0;
