@@ -115,13 +115,13 @@
   const totalPriceSpan = document.getElementById('total-price');
 
   document.getElementById('cart-btn').addEventListener('click', () => {
-    cartItemsList.innerHTML = '';
+    cart.html = '';
     let total = 0;
 
     cart.forEach(item => {
       const li = document.createElement('li');
       li.textContent = `${item.name} x ${item.quantity} – ${(item.price * item.quantity).toFixed(2)} Kč`;
-      cartItemsList.appendChild(li);
+      cart.appendChild(li);
       total += item.price * item.quantity;
     });
 
