@@ -335,41 +335,4 @@ li {
     align-items: center;
     gap: 10px;
    }
-#cart-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-#cart-modal ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#cart-modal li {
-    margin: 10px 0;
-}
-
-#close-cart-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #f4a300;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#close-cart-btn:hover {
-    background-color: #333;
-   }
 }
