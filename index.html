@@ -77,5 +77,31 @@
     <footer>
         <p>&copy; 2025 VeloxWearable. All rights reserved.</p>
     </footer>
+<script>
+  document.getElementById("search-btn").addEventListener("click", function() {
+    var searchQuery = document.getElementById("search-input").value.trim().toLowerCase();
+    if (searchQuery) {
+      // Vyhledávání produktů na stránce
+      var products = document.querySelectorAll(".product"); // Uprav podle tvé struktury produktů
+      var found = false;
+
+      products.forEach(function(product) {
+        var productName = product.querySelector(".product-name").textContent.toLowerCase(); // Uprav podle tvé struktury produktů
+        if (productName.includes(searchQuery)) {
+          product.style.display = "block"; // Zobrazit produkt
+          found = true;
+        } else {
+          product.style.display = "none"; // Skrytí produktu, který neodpovídá hledání
+        }
+      });
+
+      if (!found) {
+        alert("Žádný produkt nenalezen.");
+      }
+    } else {
+      alert("Prosím, zadejte hledaný výraz.");
+    }
+  });
+</script>
 </body>
 </html>
