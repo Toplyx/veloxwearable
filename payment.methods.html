@@ -1,4 +1,4 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
@@ -6,28 +6,20 @@
     <title>Možnosti platby</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #111;
-            padding: 20px;
+        /* Styl pro "Back" tlačítko */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #f4a300;
             color: white;
-            text-align: center;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
         }
-
-        header nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        header nav ul li {
-            display: inline;
-            margin-right: 20px;
+        .back-button:hover {
+            background-color: #ff7f00;
         }
 
         #payment-methods {
@@ -37,12 +29,6 @@
             max-width: 900px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        #payment-methods h3 {
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            text-align: center;
         }
 
         .payment-options {
@@ -86,14 +72,8 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="cart.html" id="cart-btn">Cart</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Back button -->
+    <button class="back-button" onclick="window.location.href='cart.html';">Back</button>
 
     <div id="payment-methods">
         <h3>Vyberte metodu platby</h3>
