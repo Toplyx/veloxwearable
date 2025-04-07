@@ -27,11 +27,14 @@ header {
 header nav ul {
     list-style: none;
     display: flex;
-    flex-direction: row; /* odkazy pod sebou */
+    flex-direction: row; /* odkazy vedle sebe */
     align-items: center;
     gap: 15px;
     padding: 20px 0;
+    width: 100%; /* přidáno pro zajištění plné šířky */
+    justify-content: center; /* zajistí, že odkazy budou ve středu */
 }
+
 
 header nav ul li {
     position: relative;
