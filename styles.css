@@ -360,37 +360,33 @@ button:hover, #search-btn:hover, #cart-btn:hover {
 button:active, #search-btn:active, #cart-btn:active {
     transform: scale(1);
    }
-#cart-modal {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+.cart-modal {
   display: none;
-  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
   justify-content: center;
-  z-index: 1000;
+  align-items: center;
+  z-index: 999;
 }
 
-#cart-items {
-  list-style: none;
-  padding: 0;
+.cart-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
 }
 
-#cart-items li {
-  margin: 10px 0;
-  font-size: 18px;
-}
-
-#close-cart-btn, #checkout-btn {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #f4a300;
-  color: white;
-  border: none;
-  border-radius: 5px;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
   cursor: pointer;
-}
-
-#close-cart-btn:hover, #checkout-btn:hover {
-  background-color: #333;
  }
 }
