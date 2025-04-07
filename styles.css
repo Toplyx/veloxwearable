@@ -389,4 +389,9 @@ button:active, #search-btn:active, #cart-btn:active {
   font-size: 24px;
   cursor: pointer;
  }
+.add-to-cart {
+  fill: var(--svg-fill, none);
+  stroke: var(--svg-stroge, none);
+  stroke width: var(--svg-stroke-width, 2);
+ }
 }
