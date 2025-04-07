@@ -24,6 +24,32 @@ header {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Navigation styles */
+header nav ul {
+    display: flex; /* Flexbox pro zobrazení položek v řadě */
+    justify-content: center; /* Vycentrování položek */
+    gap: 40px; /* Mezera mezi položkami */
+    list-style: none; /* Zrušení výchozích odrážek */
+    padding: 0;
+    margin: 0;
+}
+
+header nav ul li {
+    list-style: none;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff; /* Barva textu */
+    font-size: 1.2em; /* Velikost písma */
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #f4a300; /* Změna barvy při najetí */
+}
+
 /* Hero Section */
 .hero {
     background: url('images/veloxbackground.jpg') center/cover no-repeat;
@@ -204,18 +230,12 @@ footer p {
         font-size: 14px;
     }
 
+    /* Uspořádání navigace na mobilu */
     header nav ul {
-        display: flex;
-        flex-direction: column;
+        flex-direction: column; /* Položky menu budou zobrazené vertikálně */
         justify-content: center;
         gap: 20px;
-        flex-wrap: wrap;
         align-items: center;
-    }
-
-    header nav ul li {
-        width: 100%;
-        text-align: center;
     }
 
     header nav ul li a {
@@ -253,3 +273,4 @@ footer p {
         font-size: 2em;
     }
 }
+

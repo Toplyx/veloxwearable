@@ -8,23 +8,20 @@
     <meta name="author" content="Wearable">
     <title>Wearable - E-shop with clothing</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* (Your existing CSS styles here...) */
-    </style>
 </head>
 <body>
     <!-- Header -->
-<header>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About us</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#cart">Cart</a></li>
-            <li><a href="#search">Search</a></li>
-        </ul>
-    </nav>
-</header>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home" aria-label="Home page">Home</a></li>
+                <li><a href="#about" aria-label="About us page">About us</a></li>
+                <li><a href="#contact" aria-label="Contact page">Contact</a></li>
+                <li><a href="#cart" aria-label="Cart page">Cart</a></li>
+                <li><a href="#search" aria-label="Search page">Search</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -40,26 +37,38 @@
         <div class="container">
             <div class="cta-text">What are you looking for?</div>
             <div class="category-buttons">
-<a href="#" class="category-btn" id="tshirts-link">T-shirts</a>
-<script>
-    document.getElementById('tshirts-link').addEventListener('click', function(event) {
-        event.preventDefault(); // Zabráníme výchozímu chování odkazu
-        window.location.href = "t-shirts.html"; // Přesměrování na t-shirts.html
-    });
-</script>
-<a href="#" class="category-btn" id="hoodies-link">Hoodies</a>
-<script>
-    document.getElementById('hoodies-link').addEventListener('click', function(event) {
-        event.preventDefault(); // Zabráníme výchozímu chování odkazu
-        window.location.href = "hoodies.html"; // Přesměrování na hoodies.html
-    });
-</script>
-                <a href="#merch-page" class="category-btn">Merch</a>
-                <a href="#limitka-page" class="category-btn">Limitka</a>
-                <a href="#everything-page" class="category-btn">Everything</a>
+                <a href="#" class="category-btn" id="tshirts-link" aria-label="T-shirts category">T-shirts</a>
+                <a href="#" class="category-btn" id="hoodies-link" aria-label="Hoodies category">Hoodies</a>
+                <a href="#" class="category-btn" id="merch-link" aria-label="Merch category">Merch</a>
+                <a href="#" class="category-btn" id="limitka-link" aria-label="Limitka category">Limitka</a>
+                <a href="#" class="category-btn" id="everything-link" aria-label="Everything category">Everything</a>
             </div>
         </div>
     </section>
+
+    <script>
+        // Přesměrování na odpovídající stránky při kliknutí na kategorii
+        document.getElementById('tshirts-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "t-shirts.html"; // Přesměrování na t-shirts.html
+        });
+        document.getElementById('hoodies-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "hoodies.html"; // Přesměrování na hoodies.html
+        });
+        document.getElementById('merch-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "merch.html"; // Přesměrování na merch.html
+        });
+        document.getElementById('limitka-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "limitka.html"; // Přesměrování na limitka.html
+        });
+        document.getElementById('everything-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "everything.html"; // Přesměrování na everything.html
+        });
+    </script>
 
     <!-- Footer -->
     <footer>
