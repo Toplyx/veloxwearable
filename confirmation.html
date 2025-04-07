@@ -13,6 +13,23 @@
             padding: 0;
         }
 
+        header {
+            background-color: #111;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
         #confirmation {
             background-color: #fff;
             padding: 40px;
@@ -23,20 +40,18 @@
         }
 
         #confirmation h3 {
-            font-size: 2em;
             margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
         }
 
-        .input-field {
-            margin-bottom: 20px;
+        .confirmation-details {
+            margin-bottom: 30px;
         }
 
-        .input-field input {
-            width: 100%;
-            padding: 15px;
-            font-size: 1em;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+        .confirmation-details p {
+            font-size: 1.2em;
+            margin: 10px 0;
         }
 
         button {
@@ -60,25 +75,59 @@
     </style>
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html" id="cart-btn">Cart</a></li>
+                <li><a href="payment-methods.html" id="payment-btn">Platba</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <div id="confirmation">
-        <h3>Vyplňte své údaje pro doručení a platbu</h3>
-        <div class="input-field">
-            <input type="text" placeholder="Jméno a příjmení" required />
-        </div>
-        <div class="input-field">
-            <input type="text" placeholder="Adresa" required />
-        </div>
-        <div class="input-field">
-            <input type="text" placeholder="Město" required />
-        </div>
-        <div class="input-field">
-            <input type="text" placeholder="PSČ" required />
-        </div>
-        <div class="input-field">
-            <input type="email" placeholder="Email" required />
+        <h3>Potvrzení objednávky</h3>
+
+        <div class="confirmation-details">
+            <p><strong>Adresa:</strong> Jana Nováková, Ulice 123, Praha</p>
+            <p><strong>Telefon:</strong> +420 123 456 789</p>
+            <p><strong>Email:</strong> jana.novakova@email.com</p>
+            <p><strong>Vybraná platební metoda:</strong> <span id="payment-method">Visa</span></p>
+            <p><strong>Seznam produktů:</strong></p>
+            <ul id="cart-items">
+                <!-- Produkty se načtou sem -->
+            </ul>
         </div>
 
-        <button onclick="alert('Objednávka byla dokončena!');">Dokončit platbu</button>
+        <button onclick="finishOrder();">Dokončit platbu</button>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<li>Košík je prázdný.</li>";
+            } else {
+                cart.forEach(item => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        <strong>${item.name}</strong> - ${item.size.toUpperCase()} - ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} - $${item.price}
+                    `;
+                    cartItemsContainer.appendChild(li);
+                });
+            }
+
+            if (paymentMethod) {
+                document.getElementById("payment-method").textContent = paymentMethod.value.charAt(0).toUpperCase() + paymentMethod.value.slice(1);
+            }
+        });
+
+        function finishOrder() {
+            alert("Platba byla dokončena. Děkujeme za vaši objednávku!");
+        }
+    </script>
 </body>
 </html>
