@@ -34,19 +34,20 @@
     </div>
   </section>
 
-  <!-- Categories Section -->
-  <section id="categories" class="categories">
-    <div class="container">
-      <div class="cta-text">What are you looking for?</div>
-      <div class="category-buttons">
-        <a href="#" class="category-btn" id="tshirts-link">T-shirts</a>
-        <a href="#" class="category-btn" id="hoodies-link">Hoodies</a>
-        <a href="#" class="category-btn" id="merch-link">Merch</a>
-        <a href="#" class="category-btn" id="limitka-link">Limitka</a>
-        <a href="#" class="category-btn" id="everything-link">Everything</a>
-      </div>
+<!-- Example for T-shirt category -->
+<section id="categories" class="categories">
+  <div class="container">
+    <div class="cta-text">What are you looking for?</div>
+    <div class="category-buttons">
+      <a href="t-shirts.html" class="category-btn" id="tshirts-link">T-shirts</a>
+      <a href="product.html" class="category-btn">Example T-shirt</a> <!-- Example product link -->
+      <a href="hoodies.html" class="category-btn" id="hoodies-link">Hoodies</a>
+      <a href="merch.html" class="category-btn" id="merch-link">Merch</a>
+      <a href="limitka.html" class="category-btn" id="limitka-link">Limitka</a>
+      <a href="everything.html" class="category-btn" id="everything-link">Everything</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer>
@@ -99,39 +100,37 @@
 
   <!-- Skript: Košík -->
 <script>
-  const cartModal = document.getElementById('cart-modal');
-  const cartItemsList = document.getElementById('cart-items');
-  const totalPriceSpan = document.getElementById('total-price');
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  document.getElementById('cart-btn').addEventListener('click', () => {
-    cart.html = '';
-    let total = 0;
+  // Function to update the cart in localStorage
+  function updateCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 
-    cart.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = `${item.name} x ${item.quantity} – ${(item.price * item.quantity).toFixed(2)} Kč`;
-      cart.appendChild(li);
-      total += item.price * item.quantity;
+  // Function to add an item to the cart
+  function addToCart(product) {
+    cart.push(product);
+    updateCart();
+    alert(`Product added to cart: ${product.name}`);
+  }
+
+  // Add event listeners to "Add to Cart" buttons
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', (event) => {
+      const productElement = event.target.closest('.product');
+      const product = {
+        name: productElement.querySelector('h3').textContent,
+        price: parseFloat(productElement.querySelector('.price').textContent.replace('$', '')),
+        quantity: 1
+      };
+      addToCart(product);
     });
-
-    totalPriceSpan.textContent = total.toFixed(2) + ' Kč';
-    cartModal.style.display = 'flex';
-  });
-
-  document.getElementById('close-cart-btn').addEventListener('click', () => {
-    cartModal.style.display = 'none';
-  });
-
-  document.getElementById('checkout-btn').addEventListener('click', () => {
-    alert("Děkujeme za nákup! (Zatím testovací funkce)");
-    cart = []; // Vyčistí košík
-    cartModal.style.display = 'none';
   });
 </script>
 <script>
-    // Vybere tlačítko podle třídy
-    document.querySelector(".add-to-cart").addEventListener("click", function() {
-        alert("Product added to cart!");
-<script>
+  document.querySelector(".add-to-cart").addEventListener("click", function() {
+    alert("Product added to cart!");
+  });
+</script>
 </body>
 </html>

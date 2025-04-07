@@ -129,12 +129,32 @@
         </div>
     </div>
 
-    <script>
-        function addToCart() {
-            const size = document.getElementById("size").value;
-            const color = document.getElementById("color").value;
-            alert(`✅ Added to cart:\nT-shirt\nSize: ${size.toUpperCase()}\nColor: ${color.charAt(0).toUpperCase() + color.slice(1)}`);
-        }
-    </script>
+<script>
+    function addToCart() {
+        const size = document.getElementById("size").value;
+        const color = document.getElementById("color").value;
+        const product = {
+            name: "I WEAR, I DON'T CARE T-shirt",
+            size: size,
+            color: color,
+            price: 20
+        };
+
+        // Get the existing cart from localStorage
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        // Add the product to the cart
+        cart.push(product);
+
+        // Save the updated cart back to localStorage
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Confirmation alert
+        alert(`Product added to cart:\nT-shirt\nSize: ${size.toUpperCase()}\nColor: ${color.charAt(0).toUpperCase() + color.slice(1)}`);
+        
+        // Log the cart for debugging
+        console.log(cart);
+    }
+</script>
 </body>
 </html>
