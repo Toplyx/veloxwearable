@@ -103,5 +103,33 @@
     }
   });
 </script>
+// Funkce pro přidání produktu do košíku
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Načte košík z localStorage nebo vytvoří nový, pokud není
+    
+    // Přidá produkt do košíku
+    cart.push(product);
+    
+    // Uloží košík zpět do localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Event listener pro každé tlačítko "Add to Cart"
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+        // Získání dat o produktu z atributů
+        const product = {
+            id: this.closest('.product').getAttribute('data-id'),
+            name: this.closest('.product').getAttribute('data-name'),
+            price: this.closest('.product').getAttribute('data-price')
+        };
+
+        // Přidání produktu do košíku
+        addToCart(product);
+
+        // Informování uživatele
+        alert(product.name + " byl přidán do košíku!");
+    });
+});
 </body>
 </html>
