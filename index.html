@@ -150,5 +150,22 @@ document.getElementById('close-cart-btn').addEventListener('click', () => {
   document.getElementById('cart-modal').style.display = 'none';
 });
 </script>
+<script>
+let cart = [];
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+  button.addEventListener('click', () => {
+    const product = button.closest('.product');
+    const id = product.dataset.id;
+    const name = product.dataset.name;
+    const price = parseFloat(product.dataset.price);
+
+    cart.push({ id, name, price });
+    alert(`${name} přidán do košíku!`);
+    
+    console.log(cart); // pro kontrolu v konzoli
+  });
+});
+</script>
 </body>
 </html>
