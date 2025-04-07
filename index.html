@@ -1,171 +1,127 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stylish and modern e-shop with original design clothing.">
-    <meta name="keywords" content="Home, About us, Cart, Search">
-    <meta name="author" content="Wearable">
-    <title>Wearable - E-shop with clothing</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stylish and modern e-shop with original design clothing.">
+  <meta name="keywords" content="Home, About us, Cart, Search">
+  <meta name="author" content="Wearable">
+  <title>Wearable - E-shop with clothing</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
+  <!-- Header -->
+  <header>
     <nav>
-        <ul>
-             <li><a href="index.html">Home</a></li>
-             <li><a href="about.html">About us</a></li>
-             <li><a href="contact.html">Contact</a></li>
-             <li><a href="cart.html">Cart</a></li>
-            <li>
-    <input type="text" id="search-input" placeholder="Hledat produkty..." aria-label="Search products">
-    <button id="search-btn" class="btn-primary">Search</button>
-            </li>
-        </ul>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li>
+          <input type="text" id="search-input" placeholder="Hledat produkty..." aria-label="Search products">
+          <button id="search-btn" class="btn-primary">Search</button>
+        </li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Stylish clothing with original designs.</h2>
-            <p>Discover our collection and choose something that suits your style.</p>
-            <a href="#categories" class="btn-primary">Explore categories</a>
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h2>Stylish clothing with original designs.</h2>
+      <p>Discover our collection and choose something that suits your style.</p>
+      <a href="#categories" class="btn-primary">Explore categories</a>
+    </div>
+  </section>
 
-    <!-- Categories Section -->
-    <section id="categories" class="categories">
-        <div class="container">
-            <div class="cta-text">What are you looking for?</div>
-            <div class="category-buttons">
-                <a href="#" class="category-btn" id="tshirts-link" aria-label="T-shirts category">T-shirts</a>
-                <a href="#" class="category-btn" id="hoodies-link" aria-label="Hoodies category">Hoodies</a>
-                <a href="#" class="category-btn" id="merch-link" aria-label="Merch category">Merch</a>
-                <a href="#" class="category-btn" id="limitka-link" aria-label="Limitka category">Limitka</a>
-                <a href="#" class="category-btn" id="everything-link" aria-label="Everything category">Everything</a>
-            </div>
-        </div>
-    </section>
+  <!-- Categories Section -->
+  <section id="categories" class="categories">
+    <div class="container">
+      <div class="cta-text">What are you looking for?</div>
+      <div class="category-buttons">
+        <a href="#" class="category-btn" id="tshirts-link">T-shirts</a>
+        <a href="#" class="category-btn" id="hoodies-link">Hoodies</a>
+        <a href="#" class="category-btn" id="merch-link">Merch</a>
+        <a href="#" class="category-btn" id="limitka-link">Limitka</a>
+        <a href="#" class="category-btn" id="everything-link">Everything</a>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Přesměrování na odpovídající stránky při kliknutí na kategorii
-        document.getElementById('tshirts-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "t-shirts.html"; // Přesměrování na t-shirts.html
-        });
-        document.getElementById('hoodies-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "hoodies.html"; // Přesměrování na hoodies.html
-        });
-        document.getElementById('merch-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "merch.html"; // Přesměrování na merch.html
-        });
-        document.getElementById('limitka-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "limitka.html"; // Přesměrování na limitka.html
-        });
-        document.getElementById('everything-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "everything.html"; // Přesměrování na everything.html
-        });
-    </script>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 VeloxWearable. All rights reserved.</p>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 VeloxWearable. All rights reserved.</p>
-    </footer>
-<script>
-  document.getElementById("search-btn").addEventListener("click", function() {
-    var searchQuery = document.getElementById("search-input").value.trim().toLowerCase();
-    if (searchQuery) {
-      // Vyhledávání produktů na stránce
-      var products = document.querySelectorAll(".product"); // Uprav podle tvé struktury produktů
-      var found = false;
+  <!-- Skript: Kategorie přesměrování -->
+  <script>
+    const categoryLinks = {
+      'tshirts-link': 't-shirts.html',
+      'hoodies-link': 'hoodies.html',
+      'merch-link': 'merch.html',
+      'limitka-link': 'limitka.html',
+      'everything-link': 'everything.html'
+    };
 
-      products.forEach(function(product) {
-        var productName = product.querySelector(".product-name").textContent.toLowerCase(); // Uprav podle tvé struktury produktů
-        if (productName.includes(searchQuery)) {
-          product.style.display = "block"; // Zobrazit produkt
+    Object.keys(categoryLinks).forEach(id => {
+      document.getElementById(id).addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.href = categoryLinks[id];
+      });
+    });
+  </script>
+
+  <!-- Skript: Vyhledávání -->
+  <script>
+    document.getElementById("search-btn").addEventListener("click", function() {
+      const query = document.getElementById("search-input").value.trim().toLowerCase();
+      if (!query) {
+        alert("Prosím, zadejte hledaný výraz.");
+        return;
+      }
+
+      const products = document.querySelectorAll(".product");
+      let found = false;
+
+      products.forEach(product => {
+        const name = product.querySelector(".product-name").textContent.toLowerCase();
+        if (name.includes(query)) {
+          product.style.display = "block";
           found = true;
         } else {
-          product.style.display = "none"; // Skrytí produktu, který neodpovídá hledání
+          product.style.display = "none";
         }
       });
 
-      if (!found) {
-        alert("Žádný produkt nenalezen.");
-      }
-    } else {
-      alert("Prosím, zadejte hledaný výraz.");
-    }
-  });
-</script>
-<script>
-let cart = [];
+      if (!found) alert("Žádný produkt nenalezen.");
+    });
+  </script>
 
-// Přidání do košíku
-document.querySelectorAll('.add-to-cart').forEach(button => {
-  button.addEventListener('click', () => {
-    const product = button.closest('.product');
-    const id = product.dataset.id;
-    const name = product.dataset.name;
-    const price = parseFloat(product.dataset.price);
+  <!-- Skript: Košík -->
+  <script>
+    let cart = [];
 
-    // Zkontrolovat, jestli už je produkt v košíku
-    const existingProduct = cart.find(item => item.id === id);
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push({ id, name, price, quantity: 1 });
-    }
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', () => {
+        const product = button.closest('.product');
+        const id = product.dataset.id;
+        const name = product.dataset.name;
+        const price = parseFloat(product.dataset.price);
 
-    alert(`${name} přidán do košíku!`);
-  });
-});
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.push({ id, name, price, quantity: 1 });
+        }
 
-// Zobrazení košíku
-document.getElementById('cart-btn').addEventListener('click', () => {
-  const cartItemsList = document.getElementById('cart-items');
-  const totalPriceSpan = document.getElementById('total-price');
+        alert(`${name} přidán do košíku!`);
+        console.log(cart);
+      });
+    });
 
-  cartItemsList.innerHTML = ''; // Vymazat staré položky
-  let total = 0;
-
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = `${item.name} x ${item.quantity} – ${(item.price * item.quantity).toFixed(2)} Kč`;
-    cartItemsList.appendChild(li);
-    total += item.price * item.quantity;
-  });
-
-  totalPriceSpan.textContent = total.toFixed(2) + ' Kč';
-  document.getElementById('cart-modal').style.display = 'flex';
-});
-
-// Zavření košíku
-document.getElementById('close-cart-btn').addEventListener('click', () => {
-  document.getElementById('cart-modal').style.display = 'none';
-});
-</script>
-<script>
-let cart = [];
-
-document.querySelectorAll('.add-to-cart').forEach(button => {
-  button.addEventListener('click', () => {
-    const product = button.closest('.product');
-    const id = product.dataset.id;
-    const name = product.dataset.name;
-    const price = parseFloat(product.dataset.price);
-
-    cart.push({ id, name, price });
-    alert(`${name} přidán do košíku!`);
-    
-    console.log(cart); // pro kontrolu v konzoli
-  });
-});
-</script>
+    // Pokud budeš mít zobrazení košíku (např. modal), můžeš přidat i další funkce...
+  </script>
 </body>
 </html>
