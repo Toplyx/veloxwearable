@@ -141,13 +141,8 @@
             cart.push(product);
             localStorage.setItem("cart", JSON.stringify(cart));
 
-Swal.fire({
-  icon: 'success',
-  title: '✅ Added to cart!',
-  background: '#111',
-  color: '#fff',
-  confirmButtonColor: '#f4a300'
-});
+            alert(✅ Added to cart:\nT-shirt\nSize: ${size.toUpperCase()}\nColor: ${color.charAt(0).toUpperCase() + color.slice(1)});
+            console.log(cart);
         }
     </script>
 </body>
