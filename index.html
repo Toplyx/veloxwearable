@@ -103,33 +103,52 @@
     }
   });
 </script>
-// Funkce pro přidání produktu do košíku
-function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Načte košík z localStorage nebo vytvoří nový, pokud není
-    
-    // Přidá produkt do košíku
-    cart.push(product);
-    
-    // Uloží košík zpět do localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
+<script>
+let cart = [];
 
-// Event listener pro každé tlačítko "Add to Cart"
+// Přidání do košíku
 document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', function() {
-        // Získání dat o produktu z atributů
-        const product = {
-            id: this.closest('.product').getAttribute('data-id'),
-            name: this.closest('.product').getAttribute('data-name'),
-            price: this.closest('.product').getAttribute('data-price')
-        };
+  button.addEventListener('click', () => {
+    const product = button.closest('.product');
+    const id = product.dataset.id;
+    const name = product.dataset.name;
+    const price = parseFloat(product.dataset.price);
 
-        // Přidání produktu do košíku
-        addToCart(product);
+    // Zkontrolovat, jestli už je produkt v košíku
+    const existingProduct = cart.find(item => item.id === id);
+    if (existingProduct) {
+      existingProduct.quantity += 1;
+    } else {
+      cart.push({ id, name, price, quantity: 1 });
+    }
 
-        // Informování uživatele
-        alert(product.name + " byl přidán do košíku!");
-    });
+    alert(`${name} přidán do košíku!`);
+  });
 });
+
+// Zobrazení košíku
+document.getElementById('cart-btn').addEventListener('click', () => {
+  const cartItemsList = document.getElementById('cart-items');
+  const totalPriceSpan = document.getElementById('total-price');
+
+  cartItemsList.innerHTML = ''; // Vymazat staré položky
+  let total = 0;
+
+  cart.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = `${item.name} x ${item.quantity} – ${(item.price * item.quantity).toFixed(2)} Kč`;
+    cartItemsList.appendChild(li);
+    total += item.price * item.quantity;
+  });
+
+  totalPriceSpan.textContent = total.toFixed(2) + ' Kč';
+  document.getElementById('cart-modal').style.display = 'flex';
+});
+
+// Zavření košíku
+document.getElementById('close-cart-btn').addEventListener('click', () => {
+  document.getElementById('cart-modal').style.display = 'none';
+});
+</script>
 </body>
 </html>
