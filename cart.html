@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Košík</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Připojíte svůj CSS soubor -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -15,43 +15,43 @@
             </ul>
         </nav>
     </header>
-    <!-- Košík modální okno -->
+
     <div id="cart-modal">
         <h2>Váš košík</h2>
         <ul id="cart-items">
-            <!-- Zde se budou zobrazovat produkty přidané do košíku -->
+            <!-- Produkty se načtou sem -->
         </ul>
     </div>
 
-    <script src="script.js"></script>
-<script>
-    // Načti košík z localStorage
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const cartItemsContainer = document.getElementById("cart-items");
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const cartItemsContainer = document.getElementById("cart-items");
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        if (cart.length === 0) {
-            cartItemsContainer.innerHTML = "<li>Košík je prázdný.</li>";
-        } else {
-            cart.forEach((item, index) => {
-                const li = document.createElement("li");
-                li.innerHTML = `
-                    <strong>${item.name}</strong> <br>
-                    Velikost: ${item.size} | Barva: ${item.color} | Cena: $${item.price}
-                    <button onclick="removeItem(${index})" style="margin-left: 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">❌</button>
-                `;
-                cartItemsContainer.appendChild(li);
-            });
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<li>Košík je prázdný.</li>";
+            } else {
+                cart.forEach((item, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                        <strong>${item.name}</strong> <br>
+                        Velikost: ${item.size.toUpperCase()} |
+                        Barva: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} |
+                        Cena: $${item.price}
+                        <button onclick="removeItem(${index})" style="margin-left: 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">❌</button>
+                    `;
+                    li.style.marginBottom = "15px";
+                    cartItemsContainer.appendChild(li);
+                });
+            }
+        });
+
+        function removeItem(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            location.reload(); // aktualizuje stránku
         }
-    });
-
-    function removeItem(index) {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.splice(index, 1);
-        localStorage.setItem("cart", JSON.stringify(cart));
-        location.reload(); // Obnoví stránku, aby se aktualizoval košík
-    }
-</script>
+    </script>
 </body>
 </html>
