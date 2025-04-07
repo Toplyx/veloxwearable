@@ -18,7 +18,10 @@
             <li><a href="#">About us</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Cart</a></li>
-            <li><a href="#">Search</a></li>
+            <li>
+    <input type="text" id="search-input" placeholder="Hledat produkty..." aria-label="Search products">
+    <button id="search-btn" class="btn-primary">Search</button>
+            </li>
         </ul>
     </nav>
 </header>
@@ -74,5 +77,23 @@
     <footer>
         <p>&copy; 2025 VeloxWearable. All rights reserved.</p>
     </footer>
+document.getElementById('search-btn').addEventListener('click', function(event) {
+    event.preventDefault();
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();
+
+    // Získání všech produktů
+    const products = document.querySelectorAll('.product');
+
+    products.forEach(function(product) {
+        const productName = product.querySelector('h3').textContent.toLowerCase();
+
+        // Pokud název produktu odpovídá hledanému výrazu, zobrazíme ho
+        if (productName.includes(searchQuery)) {
+            product.style.display = 'block';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+});
 </body>
 </html>
