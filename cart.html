@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+\<!DOCTYPE html>  
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
@@ -21,6 +21,38 @@
         <ul id="cart-items">
             <!-- Produkty se načtou sem -->
         </ul>
+
+        <!-- Payment Methods Section -->
+        <div id="payment-methods">
+            <h3>Možnosti platby</h3>
+            <div class="payment-options">
+                <label>
+                    <input type="radio" name="payment-method" value="visa">
+                    <img src="images/visa-logo.png" alt="Visa" style="width: 100px;"/>
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="mastercard">
+                    <img src="images/mastercard-logo.png" alt="MasterCard" style="width: 100px;"/>
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="paypal">
+                    <img src="images/paypal-logo.png" alt="PayPal" style="width: 100px;"/>
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="google-pay">
+                    <img src="images/google-pay-logo.png" alt="Google Pay" style="width: 100px;"/>
+                </label>
+                <label>
+                    <input type="radio" name="payment-method" value="apple-pay">
+                    <img src="images/apple-pay-logo.png" alt="Apple Pay" style="width: 100px;"/>
+                </label>
+            </div>
+        </div>
+
+        <!-- Place Order Button -->
+        <button id="place-order-btn" style="margin-top: 20px; background-color: #f4a300; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer;">
+            Pokračovat k platbě
+        </button>
     </div>
 
     <script>
@@ -33,7 +65,7 @@
             } else {
                 cart.forEach((item, index) => {
                     const li = document.createElement("li");
-                    li.innerHTML = `
+                    li.innerHTML = ` 
                         <strong>${item.name}</strong> <br>
                         Velikost: ${item.size.toUpperCase()} |
                         Barva: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} |
