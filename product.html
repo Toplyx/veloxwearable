@@ -126,29 +126,32 @@
         </div>
     </div>
 
-    <script>
-        function addToCart() {
-            const size = document.getElementById("size").value;
-            const color = document.getElementById("color").value;
-            const product = {
-                name: "I WEAR, I DON'T CARE T-shirt",
-                size: size,
-                color: color,
-                price: 20
-            };
+<!-- Před koncem </body> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function addToCart() {
+        const size = document.getElementById("size").value;
+        const color = document.getElementById("color").value;
+        const product = {
+            name: "I WEAR, I DON'T CARE T-shirt",
+            size: size,
+            color: color,
+            price: 20
+        };
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.push(product);
-            localStorage.setItem("cart", JSON.stringify(cart));
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
 
-Swal.fire({
-  icon: 'success',
-  title: '✅ Přidáno!',
-  text: 'Produkt byl úspěšně přidán do košíku.',
-  background: '#111',
-  color: '#fff',
-  confirmButtonColor: '#f4a300'
-});
-    </script>
+        Swal.fire({
+            icon: 'success',
+            title: '✅ Přidáno!',
+            text: 'Produkt byl úspěšně přidán do košíku.',
+            background: '#111',
+            color: '#fff',
+            confirmButtonColor: '#f4a300'
+        });
+    }
+</script>
 </body>
 </html>
