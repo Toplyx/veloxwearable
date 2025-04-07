@@ -48,38 +48,26 @@
 
     <script>
         // Přesměrování na odpovídající stránky při kliknutí na kategorii
-const categoryLinks = document.querySelectorAll('.category-btn');
-categoryLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = link.id + "t-shirts.html";  // Dynamické přesměrování
-    });
-});const categoryLinks = document.querySelectorAll('.category-btn');
-categoryLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = link.id + "hoodies.html";  // Dynamické přesměrování
-    });
-});const categoryLinks = document.querySelectorAll('.category-btn');
-categoryLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = link.id + "merch.html";  // Dynamické přesměrování
-    });
-});const categoryLinks = document.querySelectorAll('.category-btn');
-categoryLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = link.id + "limitka.html";  // Dynamické přesměrování
-    });
-});
-const categoryLinks = document.querySelectorAll('.category-btn');
-categoryLinks.forEach(link => {
-    link.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.location.href = link.id + "everithing.html";  // Dynamické přesměrování
-    });
-});
+        document.getElementById('tshirts-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "t-shirts.html"; // Přesměrování na t-shirts.html
+        });
+        document.getElementById('hoodies-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "hoodies.html"; // Přesměrování na hoodies.html
+        });
+        document.getElementById('merch-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "merch.html"; // Přesměrování na merch.html
+        });
+        document.getElementById('limitka-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "limitka.html"; // Přesměrování na limitka.html
+        });
+        document.getElementById('everything-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "everything.html"; // Přesměrování na everything.html
+        });
     </script>
 
     <!-- Footer -->
