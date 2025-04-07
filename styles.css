@@ -1,1 +1,380 @@
+/* General reset and box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
 
+/* Body styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+    font-weight: 300;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    background-color: #111;
+    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Header styles */
+/* ... your header styles here */
+
+/* Hero Section styles */
+/* ... your hero styles here */
+
+/* Categories Section styles */
+/* ... your categories styles here */
+
+/* Product Section styles */
+/* ... your product section styles here */
+
+/* Mobile Version */
+@media (max-width: 768px) {
+    /* Your mobile-specific styles here */
+}
+
+/* Produkty ve verzi pro desktop */
+@media (min-width: 769px) {
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 produkty na řádek */
+        gap: 30px; /* Mezera mezi produkty na desktopu */
+        justify-items: center; /* Produkty by měly být vycentrovány na obrazovce */
+    }
+
+    .product {
+        width: 100%; /* Produkty vedle sebe na větších obrazovkách */
+        margin: 0; /* Zajistí, že produkty nebudou mít žádné nadbytečné mezery kolem sebe */
+    }
+}
+
+header nav ul {
+    list-style: none;
+    display: grid;
+    justify-content: center;
+    gap: 30px;
+}
+
+header nav ul li {
+    position: relative;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #f4a300;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #f4a300;
+}
+
+header nav ul li a:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* Hero Section */
+.hero {
+    background: url('images/veloxbackground.jpg') center/cover no-repeat;
+    padding: 120px 0;
+    text-align: center;
+    color: #fff;
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.hero h2 {
+    font-size: 4.5em;
+    margin-bottom: 20px;
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+.hero p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.hero .btn-primary {
+    background-color: #f4a300;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.3em;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase;
+}
+
+.hero .btn-primary:hover {
+    background-color: #fff;
+    color: #f4a300;
+    transform: scale(1.1);
+}
+
+/* Categories Section */
+.categories {
+    background-color: #fff;
+    padding: 80px 0;
+    text-align: center;
+    background: linear-gradient(135deg, #f4a300 0%, #ff6600 100%);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.categories .cta-text {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 3px;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    background-color: #111;
+    color: #fff;
+    padding: 20px 50px;
+    text-decoration: none;
+    font-size: 1.5em;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.category-btn:hover {
+    background-color: #f4a300;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Products Section */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.product {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+
+.product:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+    background-color: #f1f1f1;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.product:hover img {
+    transform: scale(1.1);
+}
+
+.product h3 {
+    font-size: 1.6em;
+    margin-top: 15px;
+    font-weight: 700;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.product .price {
+    font-size: 1.6em;
+    color: #f4a300;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.product .add-to-cart {
+    background-color: #f4a300;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    font-size: 1.2em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.product .add-to-cart:hover {
+    background-color: #fff;
+    color: #f4a300;
+    transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+    font-size: 1em;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Mobile Version */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    header nav ul {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    header nav ul li {
+        flex: 1;
+        text-align: center;
+    }
+
+    header nav ul li a {
+        font-size: 1em;
+        padding: 10px 0;
+    }
+
+    .hero h2 {
+        font-size: 3.5em;
+    }
+
+    .product-list {
+        grid-template-columns: repeat(3, 1fr); /* ← Teď 3 produkty vedle sebe */
+        gap: 20px;
+    }
+
+    .product {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .category-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .category-btn {
+        padding: 15px 30px;
+        font-size: 1.2em;
+    }
+
+    .cta-text {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    header nav ul {
+        flex-direction: row; /* Zobrazí položky vedle sebe */
+        justify-content: space-between; /* Rovnoměrně rozmístí položky */
+        gap: 20px; /* Mezery mezi položkami */
+    }
+
+    header nav ul li {
+        flex: 1; /* Každá položka bude mít stejnou šířku */
+        text-align: center; /* Zarovná text do středu */
+    }
+
+    header nav ul li a {
+        font-size: 1em; /* Zmenší font */
+        padding: 10px 0; /* Přidá vertikální padding pro lepší klikatelnost */
+    }
+    
+    /* Snížení velikosti písma pro nadpisy na mobilu */
+    .hero h2 {
+        font-size: 3.5em;
+    }
+
+    /* Úprava gridu pro produkty */
+    .product-list {
+        grid-template-columns: 1fr; /* Produkty se zobrazí pod sebou */
+        gap: 20px;
+    }
+
+    .product {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .category-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .category-btn {
+        padding: 15px 30px;
+        font-size: 1.2em;
+    }
+
+    .cta-text {
+        font-size: 2em;
+    }
+}

@@ -1,1 +1,71 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stylish and modern e-shop with original design clothing.">
+    <meta name="keywords" content="Home, About us, Cart, Search">
+    <meta name="author" content="Wearable">
+    <title>Wearable - E-shop with clothing</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* (Your existing CSS styles here...) */
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#Home-page">Home</a></li>
+                    <li><a href="#About us-page">About us</a></li>
+                    <li><a href="#Contact-page">Contact</a></li>
+                    <li><a href="#Cart-page">Cart</a></li>
+                    <li><a href="#Search-page">Search</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Stylish clothing with original designs.</h2>
+            <p>Discover our collection and choose something that suits your style.</p>
+            <a href="#categories" class="btn-primary">Explore categories</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="cta-text">What are you looking for?</div>
+            <div class="category-buttons">
+<a href="#" class="category-btn" id="tshirts-link">T-shirts</a>
+<script>
+    document.getElementById('tshirts-link').addEventListener('click', function(event) {
+        event.preventDefault(); // Zabráníme výchozímu chování odkazu
+        window.location.href = "t-shirts.html"; // Přesměrování na t-shirts.html
+    });
+</script>
+<a href="#" class="category-btn" id="hoodies-link">Hoodies</a>
+<script>
+    document.getElementById('hoodies-link').addEventListener('click', function(event) {
+        event.preventDefault(); // Zabráníme výchozímu chování odkazu
+        window.location.href = "hoodies.html"; // Přesměrování na hoodies.html
+    });
+</script>
+                <a href="#merch-page" class="category-btn">Merch</a>
+                <a href="#limitka-page" class="category-btn">Limitka</a>
+                <a href="#everything-page" class="category-btn">Everything</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 VeloxWearable. All rights reserved.</p>
+    </footer>
+</body>
+</html>
