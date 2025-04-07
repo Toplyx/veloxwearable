@@ -335,4 +335,29 @@ li {
     align-items: center;
     gap: 10px;
    }
+/* Styl pro všechna tlačítka */
+button, #search-btn, #cart-btn {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #f4a300;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* Efekt při hoveru pro všechna tlačítka */
+button:hover, #search-btn:hover, #cart-btn:hover {
+    background-color: #fff;
+    color: #f4a300;
+    transform: translateY(-3px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Efekt při kliknutí na tlačítko */
+button:active, #search-btn:active, #cart-btn:active {
+    transform: scale(1);
+   }
 }
