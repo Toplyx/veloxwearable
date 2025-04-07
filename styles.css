@@ -24,49 +24,13 @@ header {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Header styles */
-/* ... your header styles here */
-
-/* Hero Section styles */
-/* ... your hero styles here */
-
-/* Categories Section styles */
-/* ... your categories styles here */
-
-/* Product Section styles */
-/* ... your product section styles here */
-
-/* Mobile Version */
-@media (max-width: 768px) {
-    /* Your mobile-specific styles here */
-}
-
-/* Produkty ve verzi pro desktop */
-@media (min-width: 769px) {
-    .product-list {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* 3 produkty na řádek */
-        gap: 30px; /* Mezera mezi produkty na desktopu */
-        justify-items: center; /* Produkty by měly být vycentrovány na obrazovce */
-    }
-
-.product img {
-    object-fit: cover;
-    height: 250px;
-}
-
-
-    .product {
-        width: 100%; /* Produkty vedle sebe na větších obrazovkách */
-        margin: 0; /* Zajistí, že produkty nebudou mít žádné nadbytečné mezery kolem sebe */
-    }
-}
-
 header nav ul {
     list-style: none;
     display: flex;
-    justify-content: center;
-    gap: 30px;
+    flex-direction: column; /* odkazy pod sebou */
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
 }
 
 header nav ul li {
@@ -287,23 +251,6 @@ footer p {
         font-size: 14px;
     }
 
-    header nav ul {
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-
-    header nav ul li {
-        flex: 1;
-        text-align: center;
-    }
-
-    header nav ul li a {
-        font-size: 1em;
-        padding: 10px 0;
-    }
-
     .hero h2 {
         font-size: 3.5em;
     }
@@ -332,3 +279,24 @@ footer p {
         font-size: 2em;
     }
 }
+
+/* Desktop produktová sekce */
+@media (min-width: 769px) {
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        justify-items: center;
+    }
+
+    .product img {
+        object-fit: cover;
+        height: 250px;
+    }
+
+    .product {
+        width: 100%;
+        margin: 0;
+    }
+}
+
