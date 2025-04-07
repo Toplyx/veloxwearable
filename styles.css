@@ -287,6 +287,7 @@ footer p {
         opacity: 1;
         transform: translateY(0);
     }
+}
 /* Základní styl pro input */
 #search-input {
     padding: 10px 15px;
@@ -391,9 +392,9 @@ button:active, #search-btn:active, #cart-btn:active {
  }
 .add-to-cart {
   fill: var(--svg-fill, none);
-  stroke: var(--svg-stroge, none);
-  stroke width: var(--svg-stroke-width, 2);
- }
+  stroke: var(--svg-stroke, none); /* opravený název */
+  stroke-width: var(--svg-stroke-width, 2); /* opravená syntaxe */
+}
 .product-detail {
     display: flex;
     gap: 50px;
