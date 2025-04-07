@@ -12,10 +12,18 @@
             padding: 0;
         }
 
+        /* Navigation Buttons */
         .nav-buttons {
             display: flex;
+            justify-content: center;
             gap: 20px;
             margin: 30px 50px;
+        }
+
+        .nav-buttons-left {
+            position: absolute;
+            left: 50px;
+            top: 30px;
         }
 
         .nav-buttons a {
@@ -113,9 +121,13 @@
 </head>
 <body>
     <!-- Navigation buttons -->
+    <div class="nav-buttons-left">
+        <a href="javascript:history.back()">Back</a>
+    </div>
+
     <div class="nav-buttons">
         <a href="index.html">Home</a>
-        <a href="javascript:history.back()">Back</a>
+        <a href="cart.html">Cart</a>
     </div>
 
     <!-- Product Details Section -->
