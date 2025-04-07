@@ -17,7 +17,14 @@
              <li><a href="index.html">Home</a></li>
              <li><a href="about.html">About us</a></li>
              <li><a href="contact.html">Contact</a></li>
-             <li><a href="cart.html">Cart</a></li>            
+             <li><a href="cart.html">Cart</a></li>
+             <script>
+        // Přesměrování na odpovídající stránky při kliknutí na kategorii
+        document.getElementById('tshirts-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "t-shirts.html"; // Přesměrování na t-shirts.html
+        });    
+            <scirpt>       
             <li>
     <input type="text" id="search-input" placeholder="Hledat produkty..." aria-label="Search products">
     <button id="search-btn" class="btn-primary">Search</button>

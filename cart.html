@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Košík</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Připojíte svůj CSS soubor -->
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Domů</a></li>
+                <li><a href="cart.html" id="cart-btn">Košík</a></li>
+            </ul>
+        </nav>
+    </header>
 
+    <!-- Produkty na stránce -->
+    <div class="product-list">
+        <div class="product" data-id="1">
+            <img src="images/product1.jpg" alt="Produkt 1">
+            <h3>Produkt 1</h3>
+            <p class="price">500 CZK</p>
+            <button class="add-to-cart">Přidat do košíku</button>
+        </div>
+        <div class="product" data-id="2">
+            <img src="images/product2.jpg" alt="Produkt 2">
+            <h3>Produkt 2</h3>
+            <p class="price">700 CZK</p>
+            <button class="add-to-cart">Přidat do košíku</button>
+        </div>
+        <div class="product" data-id="3">
+            <img src="images/product3.jpg" alt="Produkt 3">
+            <h3>Produkt 3</h3>
+            <p class="price">900 CZK</p>
+            <button class="add-to-cart">Přidat do košíku</button>
+        </div>
+    </div>
+
+    <!-- Košík modální okno -->
+    <div id="cart-modal">
+        <h2>Váš košík</h2>
+        <ul id="cart-items">
+            <!-- Zde se budou zobrazovat produkty přidané do košíku -->
+        </ul>
+        <button id="close-cart-btn">Zavřít</button>
+    </div>
+
+    <script src="script.js"></script>
+// Uložíme produkty do košíku do localStorage (můžeme použít i jiný storage podle potřeby)
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Funkce pro přidání produktu do košíku
+function addToCart(productId) {
+    // Zde můžete přidat produkt dle jeho ID a dalších vlastností
+    const product = {
+        id: productId,
+        name: `Produkt ${productId}`,
+        price: `${productId * 100} CZK`
+    };
+
+    cart.push(product);
+    localStorage.setItem('cart', JSON.stringify(cart)); // Uložíme košík do localStorage
+}
+
+// Funkce pro zobrazení produktů v košíku
+function displayCart() {
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = ''; // Vymažeme obsah, pokud už nějaké produkty jsou
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<li>Váš košík je prázdný.</li>';
+    } else {
+        cart.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `${item.name} - ${item.price}`;
+            cartItems.appendChild(li);
+        });
+    }
+
+    document.getElementById('cart-modal').style.display = 'flex'; // Zobrazíme košík
+}
+
+// Funkce pro zavření košíku
+function closeCart() {
+    document.getElementById('cart-modal').style.display = 'none'; // Skryjeme košík
+}
+
+// Přidání event listenerů pro tlačítka "Přidat do košíku"
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        const productId = this.parentElement.getAttribute('data-id'); // Získáme ID produktu
+        addToCart(productId);
+    });
+});
+
+// Přidání event listeneru pro tlačítko "Košík"
+document.getElementById('cart-btn').addEventListener('click', function(event) {
+    event.preventDefault(); // Zabráníme defaultnímu chování odkazu
+    displayCart(); // Zobrazíme košík
+});
+
+// Přidání event listeneru pro zavření košíku
+document.getElementById('close-cart-btn').addEventListener('click', closeCart);
+</body>
+</html>
