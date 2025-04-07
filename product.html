@@ -16,7 +16,7 @@
         .nav-buttons {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             margin: 30px 50px;
         }
 
@@ -27,16 +27,26 @@
         }
 
         .nav-buttons a {
-            background-color: #f4a300;
+            background: linear-gradient(145deg, #f4a300, #ffbb33);
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
         .nav-buttons a:hover {
-            background-color: white;
-            color: #f4a300;
+            background: linear-gradient(145deg, #ffbb33, #f4a300);
+            transform: scale(1.1);
+            box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-buttons a:active {
+            transform: scale(1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
         .product-detail {
