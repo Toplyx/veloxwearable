@@ -1,10 +1,77 @@
-\<!DOCTYPE html>  
+<!DOCTYPE html>  
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Košík</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #111;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        #cart-modal {
+            background-color: #fff;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 900px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #cart-items li {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #f4a300;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        button:hover {
+            background-color: white;
+            color: #f4a300;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
 </head>
 <body>
     <header>
@@ -22,37 +89,8 @@
             <!-- Produkty se načtou sem -->
         </ul>
 
-        <!-- Payment Methods Section -->
-        <div id="payment-methods">
-            <h3>Možnosti platby</h3>
-            <div class="payment-options">
-                <label>
-                    <input type="radio" name="payment-method" value="visa">
-                    <img src="images/visa-logo.png" alt="Visa" style="width: 100px;"/>
-                </label>
-                <label>
-                    <input type="radio" name="payment-method" value="mastercard">
-                    <img src="images/mastercard-logo.png" alt="MasterCard" style="width: 100px;"/>
-                </label>
-                <label>
-                    <input type="radio" name="payment-method" value="paypal">
-                    <img src="images/paypal-logo.png" alt="PayPal" style="width: 100px;"/>
-                </label>
-                <label>
-                    <input type="radio" name="payment-method" value="google-pay">
-                    <img src="images/google-pay-logo.png" alt="Google Pay" style="width: 100px;"/>
-                </label>
-                <label>
-                    <input type="radio" name="payment-method" value="apple-pay">
-                    <img src="images/apple-pay-logo.png" alt="Apple Pay" style="width: 100px;"/>
-                </label>
-            </div>
-        </div>
-
-        <!-- Place Order Button -->
-        <button id="place-order-btn" style="margin-top: 20px; background-color: #f4a300; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer;">
-            Pokračovat k platbě
-        </button>
+        <!-- Pokračování k platbě -->
+        <button onclick="window.location.href='payment-methods.html';">Pokračovat k platbě</button>
     </div>
 
     <script>
