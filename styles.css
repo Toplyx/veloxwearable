@@ -1,276 +1,412 @@
-/* General reset and box-sizing */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stylish and modern e-shop with original design clothing.">
+    <meta name="keywords" content="Home, About us, Cart, Search">
+    <meta name="author" content="Wearable">
+    <title>Wearable - E-shop with clothing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Cart</a></li>
+            <li><a href="#">Search</a></li>
+        </ul>
+    </nav>
+</header>
 
-/* Body styles */
-body {
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-    background-color: #f8f8f8;
-    color: #333;
-    line-height: 1.6;
-    font-weight: 300;
-    overflow-x: hidden;
-}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Stylish clothing with original designs.</h2>
+            <p>Discover our collection and choose something that suits your style.</p>
+            <a href="#categories" class="btn-primary">Explore categories</a>
+        </div>
+    </section>
 
-/* Header */
-header {
-    background-color: #111;
-    color: #fff;
-    padding: 20px 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="cta-text">What are you looking for?</div>
+            <div class="category-buttons">
+                <a href="#" class="category-btn" id="tshirts-link" aria-label="T-shirts category">T-shirts</a>
+                <a href="#" class="category-btn" id="hoodies-link" aria-label="Hoodies category">Hoodies</a>
+                <a href="#" class="category-btn" id="merch-link" aria-label="Merch category">Merch</a>
+                <a href="#" class="category-btn" id="limitka-link" aria-label="Limitka category">Limitka</a>
+                <a href="#" class="category-btn" id="everything-link" aria-label="Everything category">Everything</a>
+            </div>
+        </div>
+    </section>
 
-/* Navigation styles */
-header nav ul {
-    display: flex; /* Flexbox pro zobrazení položek v řadě */
-    justify-content: center; /* Vycentrování položek */
-    gap: 40px; /* Mezera mezi položkami */
-    list-style: none; /* Zrušení výchozích odrážek */
-    padding: 0;
-    margin: 0;
-}
+    <script>
+        // Přesměrování na odpovídající stránky při kliknutí na kategorii
+        document.getElementById('tshirts-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "t-shirts.html"; // Přesměrování na t-shirts.html
+        });
+        document.getElementById('hoodies-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "hoodies.html"; // Přesměrování na hoodies.html
+        });
+        document.getElementById('merch-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "merch.html"; // Přesměrování na merch.html
+        });
+        document.getElementById('limitka-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "limitka.html"; // Přesměrování na limitka.html
+        });
+        document.getElementById('everything-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = "everything.html"; // Přesměrování na everything.html
+        });
+    </script>
 
-header nav ul li {
-    list-style: none;
-}
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 VeloxWearable. All rights reserved.</p>
+    </footer>
+</body>
+</html>, <!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stylish T-shirts with original designs.">
+    <meta name="keywords" content="T-shirts, Clothing, Fashion, E-shop">
+    <meta name="author" content="Wearable">
+    <title>T-shirts - Wearable E-shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-header nav ul li a {
-    text-decoration: none;
-    color: #fff; /* Barva textu */
-    font-size: 1.2em; /* Velikost písma */
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="search.html">Search</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-header nav ul li a:hover {
-    color: #f4a300; /* Změna barvy při najetí */
-}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Stylish Clothing with Original Designs</h2>
+            <p>Choose your perfect match from our exclusive T-shirt collection.</p>
+        </div>
+    </section>
 
-/* Hero Section */
-.hero {
-    background: url('images/veloxbackground.jpg') center/cover no-repeat;
-    padding: 120px 0;
-    text-align: center;
-    color: #fff;
-    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.5);
-    position: relative;
-}
+    <!-- Products Section -->
+    <section class="product-list">
+        <div class="container">
+            <div class="product">
+                <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="T-shirt 1">
+                <h3>I WEAR, I(Dont) CARE Black T-shirt </h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="images/SWALLOW, IF YOU DARE.jpg" alt="T-shirt 2">
+                <h3>SWALLOW, IF YOU DARE Black T-shirt</h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="T-shirt 3">
+                <h3>I WEAR, I(Dont) CARE</h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
 
-.hero h2 {
-    font-size: 4.5em;
-    margin-bottom: 20px;
-    font-weight: 900;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
-}
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Wearable. All rights reserved.</p>
+    </footer>
+</body>
+</html>, <!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stylish T-shirts with original designs.">
+    <meta name="keywords" content="T-shirts, Clothing, Fashion, E-shop">
+    <meta name="author" content="Wearable">
+    <title>Hoodies - Wearable E-shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-.hero p {
-    font-size: 1.4em;
-    margin-bottom: 30px;
-    font-weight: 400;
-}
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="search.html">Search</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-.hero .btn-primary {
-    background-color: #f4a300;
-    color: #fff;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 50px;
-    font-size: 1.3em;
-    letter-spacing: 1px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    text-transform: uppercase;
-}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Stylish Clothing with Original Designs</h2>
+            <p>Choose your perfect match from our exclusive T-shirt collection.</p>
+        </div>
+    </section>
 
-.hero .btn-primary:hover {
-    background-color: #fff;
-    color: #f4a300;
-    transform: scale(1.1);
-}
+    <!-- Products Section -->
+    <section class="product-list">
+        <div class="container">
+            <div class="product">
+                <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="T-shirt 1">
+                <h3>I WEAR, I(Dont) CARE 1</h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="T-shirt 2">
+                <h3>I WEAR, I(Dont) CARE</h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="T-shirt 3">
+                <h3>I WEAR, I(Dont) CARE</h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
 
-/* Categories Section */
-.categories {
-    background-color: #fff;
-    padding: 80px 0;
-    text-align: center;
-    background: linear-gradient(135deg, #f4a300 0%, #ff6600 100%);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Wearable. All rights reserved.</p>
+    </footer>
+</body>
+</html>, <!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stylish T-shirts with original designs.">
+    <meta name="keywords" content="T-shirts, Clothing, Fashion, E-shop">
+    <meta name="author" content="Wearable">
+    <title>Merch - Wearable E-shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-.categories .cta-text {
-    font-size: 2.5em;
-    margin-bottom: 40px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #fff;
-    letter-spacing: 3px;
-}
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="search.html">Search</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-.category-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Stylish Clothing with Original Designs</h2>
+            <p>Choose your perfect match from our exclusive T-shirt collection.</p>
+        </div>
+    </section>
 
-.category-btn {
-    background-color: #111;
-    color: #fff;
-    padding: 20px 50px;
-    text-decoration: none;
-    font-size: 1.5em;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+    <!-- Products Section -->
+    <section class="product-list">
+        <div class="container">
+            <div class="product">
+                <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="T-shirt 1">
+                <h3>I WEAR, I(Dont) CARE 1</h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="T-shirt 2">
+                <h3>I WEAR, I(Dont) CARE</h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="T-shirt 3">
+                <h3>I WEAR, I(Dont) CARE</h3>
+                <p class="price">20$</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </section>
 
-.category-btn:hover {
-    background-color: #f4a300;
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Wearable. All rights reserved.</p>
+    </footer>
+</body>
+</html>, <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>I WEAR, I DON'T CARE – Detail</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #111;
+            color: #fff;
+        }
 
-/* Products Section */
-.product-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #1c1c1c;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
 
-.product {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    text-align: center;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    position: relative;
-}
+        .product-image {
+            flex: 1;
+            text-align: center;
+        }
 
-.product:hover {
-    transform: translateY(-15px);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
-    background-color: #f1f1f1;
-}
+        .product-image img {
+            max-width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
 
-.product img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
+        .product-info {
+            flex: 1;
+        }
 
-.product:hover img {
-    transform: scale(1.1);
-}
+        .product-info h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
 
-.product h3 {
-    font-size: 1.6em;
-    margin-top: 15px;
-    font-weight: 700;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
+        .product-info p {
+            color: #ccc;
+            line-height: 1.6;
+        }
 
-.product .price {
-    font-size: 1.6em;
-    color: #f4a300;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    font-weight: 500;
-}
+        .product-info .price {
+            font-size: 24px;
+            color: #00ff99;
+            margin: 15px 0;
+        }
 
-.product .add-to-cart {
-    background-color: #f4a300;
-    color: #fff;
-    padding: 12px 25px;
-    border: none;
-    font-size: 1.2em;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-}
+        label {
+            display: block;
+            margin-top: 20px;
+            font-weight: bold;
+        }
 
-.product .add-to-cart:hover {
-    background-color: #fff;
-    color: #f4a300;
-    transform: translateY(-3px);
-}
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #222;
+            color: #fff;
+            border: 1px solid #444;
+            border-radius: 8px;
+        }
 
-/* Footer */
-footer {
-    background-color: #111;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
+        .btn {
+            margin-top: 30px;
+            background-color: #00ff99;
+            color: #000;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
 
-footer p {
-    font-size: 1em;
-    font-weight: 300;
-    letter-spacing: 1px;
-}
+        .btn:hover {
+            background-color: #00cc77;
+        }
 
-/* Mobile Version */
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="product-image">
+<img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="I WEAR, I DON'T CARE T-shirt" />
+        </div>
 
-    /* Uspořádání navigace na mobilu */
-    header nav ul {
-        flex-direction: column; /* Položky menu budou zobrazené vertikálně */
-        justify-content: center;
-        gap: 20px;
-        align-items: center;
-    }
+        <div class="product-info">
+            <h1>I WEAR, I DON'T CARE</h1>
+            <p class="price">$20</p>
+            <p>
+                This bold black t-shirt makes a statement. Designed for those who live confidently,
+                this shirt is made of premium cotton, offering all-day comfort and style. Be bold, be different.
+            </p>
 
-    header nav ul li a {
-        font-size: 1em;
-        padding: 10px 0;
-    }
-    
-    /* Snížení velikosti písma pro nadpisy na mobilu */
-    .hero h2 {
-        font-size: 3.5em;
-    }
+            <label for="size">Size:</label>
+            <select id="size">
+                <option value="s">Small (S)</option>
+                <option value="m">Medium (M)</option>
+                <option value="l">Large (L)</option>
+                <option value="xl">Extra Large (XL)</option>
+            </select>
 
-    /* Úprava gridu pro produkty */
-    .product-list {
-        grid-template-columns: 1fr; /* Produkty se zobrazí pod sebou */
-        gap: 20px;
-    }
+            <label for="color">Color:</label>
+            <select id="color">
+                <option value="black">Black</option>
+                <option value="white">White</option>
+            </select>
 
-    .product {
-        width: 100%;
-        padding: 15px;
-    }
+            <button class="btn" onclick="addToCart()">Add to Cart</button>
+        </div>
+    </div>
 
-    .category-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .category-btn {
-        padding: 15px 30px;
-        font-size: 1.2em;
-    }
-
-    .cta-text {
-        font-size: 2em;
-    }
-}
-
+    <script>
+        function addToCart() {
+            const size = document.getElementById("size").value;
+            const color = document.getElementById("color").value;
+            alert(✅ Added to cart:\nT-shirt\nSize: ${size.toUpperCase()}\nColor: ${color.charAt(0).toUpperCase() + color.slice(1)});
+        }
+    </script>
+</body>
+</html>

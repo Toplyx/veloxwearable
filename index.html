@@ -12,16 +12,16 @@
 <body>
     <!-- Header -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="#home" aria-label="Home page">Home</a></li>
-                <li><a href="#about" aria-label="About us page">About us</a></li>
-                <li><a href="#contact" aria-label="Contact page">Contact</a></li>
-                <li><a href="#cart" aria-label="Cart page">Cart</a></li>
-                <li><a href="#search" aria-label="Search page">Search</a></li>
-            </ul>
-        </nav>
-    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Cart</a></li>
+            <li><a href="#">Search</a></li>
+        </ul>
+    </nav>
+</header>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -48,26 +48,38 @@
 
     <script>
         // Přesměrování na odpovídající stránky při kliknutí na kategorii
-        document.getElementById('tshirts-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "t-shirts.html"; // Přesměrování na t-shirts.html
-        });
-        document.getElementById('hoodies-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "hoodies.html"; // Přesměrování na hoodies.html
-        });
-        document.getElementById('merch-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "merch.html"; // Přesměrování na merch.html
-        });
-        document.getElementById('limitka-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "limitka.html"; // Přesměrování na limitka.html
-        });
-        document.getElementById('everything-link').addEventListener('click', function(event) {
-            event.preventDefault();
-            window.location.href = "everything.html"; // Přesměrování na everything.html
-        });
+const categoryLinks = document.querySelectorAll('.category-btn');
+categoryLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = link.id + "t-shirts.html";  // Dynamické přesměrování
+    });
+});const categoryLinks = document.querySelectorAll('.category-btn');
+categoryLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = link.id + "hoodies.html";  // Dynamické přesměrování
+    });
+});const categoryLinks = document.querySelectorAll('.category-btn');
+categoryLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = link.id + "merch.html";  // Dynamické přesměrování
+    });
+});const categoryLinks = document.querySelectorAll('.category-btn');
+categoryLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = link.id + "limitka.html";  // Dynamické přesměrování
+    });
+});
+const categoryLinks = document.querySelectorAll('.category-btn');
+categoryLinks.forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.location.href = link.id + "everithing.html";  // Dynamické přesměrování
+    });
+});
     </script>
 
     <!-- Footer -->
