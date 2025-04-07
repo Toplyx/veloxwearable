@@ -25,20 +25,5 @@
     </div>
 
     <script src="script.js"></script>
-// Uložíme produkty do košíku do localStorage (můžeme použít i jiný storage podle potřeby)
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// Funkce pro přidání produktu do košíku
-function addToCart(productId) {
-    // Zde můžete přidat produkt dle jeho ID a dalších vlastností
-    const product = {
-        id: productId,
-        name: `Produkt ${productId}`,
-        price: `${productId * 100} CZK`
-    };
-
-    cart.push(product);
-    localStorage.setItem('cart', JSON.stringify(cart)); // Uložíme košík do localStorage
-}
 </body>
 </html>
