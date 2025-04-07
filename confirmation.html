@@ -54,6 +54,25 @@
             margin: 10px 0;
         }
 
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
         button {
             background-color: #f4a300;
             color: white;
@@ -88,27 +107,49 @@
     <div id="confirmation">
         <h3>Potvrzení objednávky</h3>
 
-        <div class="confirmation-details">
-            <p><strong>Adresa:</strong> Jana Nováková, Ulice 123, Praha</p>
-            <p><strong>Telefon:</strong> +420 123 456 789</p>
-            <p><strong>Email:</strong> jana.novakova@email.com</p>
-            <p><strong>Vybraná platební metoda:</strong> <span id="payment-method">Visa</span></p>
-            <p><strong>Seznam produktů:</strong></p>
-            <ul id="cart-items">
-                <!-- Produkty se načtou sem -->
-            </ul>
-        </div>
+        <form id="order-form">
+            <div class="form-group">
+                <label for="address">Adresa</label>
+                <input type="text" id="address" name="address" placeholder="Zadejte adresu" required>
+            </div>
 
-        <button onclick="finishOrder();">Dokončit platbu</button>
+            <div class="form-group">
+                <label for="phone">Telefon</label>
+                <input type="tel" id="phone" name="phone" placeholder="Zadejte telefonní číslo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Zadejte email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="payment-method">Vyberte platební metodu</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="visa">Visa</option>
+                    <option value="mastercard">Mastercard</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="google-pay">Google Pay</option>
+                    <option value="apple-pay">Apple Pay</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cart-items">Seznam produktů:</label>
+                <ul id="cart-items">
+                    <!-- Produkty se načtou sem -->
+                </ul>
+            </div>
+
+            <button type="submit">Dokončit platbu</button>
+        </form>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const cartItemsContainer = document.getElementById("cart-items");
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
 
-            // Zobrazíme produkty v košíku
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = "<li>Košík je prázdný.</li>";
             } else {
@@ -120,19 +161,18 @@
                     cartItemsContainer.appendChild(li);
                 });
             }
-
-            // Zobrazíme zvolenou platební metodu
-            if (paymentMethod) {
-                document.getElementById("payment-method").textContent = paymentMethod.value.charAt(0).toUpperCase() + paymentMethod.value.slice(1);
-            }
         });
 
-        // Funkce pro dokončení platby
-        function finishOrder() {
-            // Tady by měla být logika pro zpracování platby, např. komunikace s API
-            alert("Platba byla dokončena. Děkujeme za vaši objednávku!");
-            // Po dokončení platby můžeš přesměrovat na děkovnou stránku nebo výběr jiných akcí
-        }
+        document.getElementById("order-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
+            const email = document.getElementById("email").value;
+            const paymentMethod = document.getElementById("payment-method").value;
+
+            alert(`Objednávka potvrzena!\n\nAdresa: ${address}\nTelefon: ${phone}\nEmail: ${email}\nPlatba: ${paymentMethod}`);
+        });
     </script>
 </body>
 </html>
