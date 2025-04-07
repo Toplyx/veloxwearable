@@ -141,9 +141,14 @@
             cart.push(product);
             localStorage.setItem("cart", JSON.stringify(cart));
 
-            alert(✅ Added to cart:\nT-shirt\nSize: ${size.toUpperCase()}\nColor: ${color.charAt(0).toUpperCase() + color.slice(1)});
-            console.log(cart);
-        }
+Swal.fire({
+  icon: 'success',
+  title: '✅ Přidáno!',
+  text: 'Produkt byl úspěšně přidán do košíku.',
+  background: '#111',
+  color: '#fff',
+  confirmButtonColor: '#f4a300'
+});
     </script>
 </body>
 </html>
