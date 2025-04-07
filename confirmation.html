@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Potvrzení objednávky</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -146,6 +147,9 @@
     </div>
 
     <script>
+        const stripe = Stripe('tvůj_public_key_z_Stripe'); // Tvůj public key z Stripe
+        const elements = stripe.elements();
+        
         document.addEventListener("DOMContentLoaded", function () {
             const cartItemsContainer = document.getElementById("cart-items");
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -155,7 +159,7 @@
             } else {
                 cart.forEach(item => {
                     const li = document.createElement("li");
-                    li.innerHTML = ` 
+                    li.innerHTML = `
                         <strong>${item.name}</strong> - ${item.size.toUpperCase()} - ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} - $${item.price}
                     `;
                     cartItemsContainer.appendChild(li);
@@ -171,7 +175,34 @@
             const email = document.getElementById("email").value;
             const paymentMethod = document.getElementById("payment-method").value;
 
-            alert(`Objednávka potvrzena!\n\nAdresa: ${address}\nTelefon: ${phone}\nEmail: ${email}\nPlatba: ${paymentMethod}`);
+            // Vytvoření tokenu pro platbu (pro Stripe)
+            stripe.createPaymentMethod('card', cardElement).then(function(result) {
+                if (result.error) {
+                    alert(result.error.message);
+                } else {
+                    // Odeslání platebního tokenu na server pro zpracování platby
+                    fetch('/create-payment-intent', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            payment_method: result.paymentMethod.id,
+                            address: address,
+                            phone: phone,
+                            email: email,
+                            payment_method_type: paymentMethod
+                        }),
+                    }).then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(`Objednávka potvrzena!\n\nAdresa: ${address}\nTelefon: ${phone}\nEmail: ${email}\nPlatba: ${paymentMethod}`);
+                        } else {
+                            alert('Platba se nezdařila!');
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>
