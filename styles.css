@@ -50,6 +50,12 @@ header {
         justify-items: center; /* Produkty by měly být vycentrovány na obrazovce */
     }
 
+.product img {
+    object-fit: cover;
+    height: 250px;
+}
+
+
     .product {
         width: 100%; /* Produkty vedle sebe na větších obrazovkách */
         margin: 0; /* Zajistí, že produkty nebudou mít žádné nadbytečné mezery kolem sebe */
@@ -303,59 +309,7 @@ footer p {
     }
 
     .product-list {
-        grid-template-columns: repeat(3, 1fr); /* ← Teď 3 produkty vedle sebe */
-        gap: 20px;
-    }
-
-    .product {
-        width: 100%;
-        padding: 15px;
-    }
-
-    .category-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .category-btn {
-        padding: 15px 30px;
-        font-size: 1.2em;
-    }
-
-    .cta-text {
-        font-size: 2em;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        font-size: 14px;
-    }
-
-    header nav ul {
-        flex-direction: row; /* Zobrazí položky vedle sebe */
-        justify-content: space-between; /* Rovnoměrně rozmístí položky */
-        gap: 20px; /* Mezery mezi položkami */
-    }
-
-    header nav ul li {
-        flex: 1; /* Každá položka bude mít stejnou šířku */
-        text-align: center; /* Zarovná text do středu */
-    }
-
-    header nav ul li a {
-        font-size: 1em; /* Zmenší font */
-        padding: 10px 0; /* Přidá vertikální padding pro lepší klikatelnost */
-    }
-    
-    /* Snížení velikosti písma pro nadpisy na mobilu */
-    .hero h2 {
-        font-size: 3.5em;
-    }
-
-    /* Úprava gridu pro produkty */
-    .product-list {
-        grid-template-columns: 1fr; /* Produkty se zobrazí pod sebou */
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
