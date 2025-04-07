@@ -108,25 +108,30 @@
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
             const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
 
+            // Zobrazíme produkty v košíku
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = "<li>Košík je prázdný.</li>";
             } else {
                 cart.forEach(item => {
                     const li = document.createElement("li");
-                    li.innerHTML = `
+                    li.innerHTML = ` 
                         <strong>${item.name}</strong> - ${item.size.toUpperCase()} - ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} - $${item.price}
                     `;
                     cartItemsContainer.appendChild(li);
                 });
             }
 
+            // Zobrazíme zvolenou platební metodu
             if (paymentMethod) {
                 document.getElementById("payment-method").textContent = paymentMethod.value.charAt(0).toUpperCase() + paymentMethod.value.slice(1);
             }
         });
 
+        // Funkce pro dokončení platby
         function finishOrder() {
+            // Tady by měla být logika pro zpracování platby, např. komunikace s API
             alert("Platba byla dokončena. Děkujeme za vaši objednávku!");
+            // Po dokončení platby můžeš přesměrovat na děkovnou stránku nebo výběr jiných akcí
         }
     </script>
 </body>
