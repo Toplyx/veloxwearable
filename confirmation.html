@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Potvrzení objednávky</title>
+    <title>Order Confirmation</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -12,52 +12,52 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="cart.html" id="cart-btn">Košík</a></li>
+                <li><a href="cart.html" id="cart-btn">Cart</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <div id="confirmation">
-            <h3>Potvrzení objednávky</h3>
+            <h3>Order Confirmation</h3>
             <form id="order-form">
                 <div class="form-group">
-                    <label for="address">Adresa</label>
-                    <input type="text" id="address" name="address" placeholder="Zadejte adresu" required>
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Enter address" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Telefon</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Zadejte telefonní číslo" required>
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Zadejte email" required>
+                    <input type="email" id="email" name="email" placeholder="Enter email" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="payment-method">Vyberte platební metodu</label>
+                    <label for="payment-method">Choose Payment Method</label>
                     <select id="payment-method" name="payment-method" required>
-                        <option value="card">Kreditní / Debetní karta</option>
+                        <option value="card">Credit / Debit Card</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="card-element">Platební karta</label>
+                    <label for="card-element">Credit Card</label>
                     <div id="card-element"></div>
                 </div>
 
                 <div class="form-group">
-                    <label>Seznam produktů:</label>
+                    <label>Product List:</label>
                     <ul id="cart-items"></ul>
                 </div>
 
                 <div class="total-price">
-                    Celková částka: <span id="total-price">0 Kč</span>
+                    Total Amount: <span id="total-price">0 €</span>
                 </div>
 
-                <button type="submit" class="submit-btn">Dokončit platbu</button>
+                <button type="submit" class="submit-btn">Complete Payment</button>
                 <div class="error-message" id="error-message"></div>
             </form>
         </div>
@@ -75,15 +75,15 @@
             let totalPrice = 0;
 
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = "<li>Košík je prázdný.</li>";
+                cartItemsContainer.innerHTML = "<li>Your cart is empty.</li>";
             } else {
                 cart.forEach(item => {
                     const li = document.createElement("li");
-                    li.textContent = `${item.name} - ${item.size} - ${item.color} - ${item.price} Kč`;
+                    li.textContent = `${item.name} - ${item.size} - ${item.color} - ${item.price} €`;
                     cartItemsContainer.appendChild(li);
                     totalPrice += item.price;
                 });
-                document.getElementById("total-price").textContent = `${totalPrice} Kč`;
+                document.getElementById("total-price").textContent = `${totalPrice} €`;
             }
         });
 
@@ -93,7 +93,7 @@
             const address = document.getElementById("address").value;
             const phone = document.getElementById("phone").value;
             const email = document.getElementById("email").value;
-            const totalPrice = parseInt(document.getElementById("total-price").textContent.replace(' Kč', ''));
+            const totalPrice = parseInt(document.getElementById("total-price").textContent.replace(' €', ''));
 
             const { error, paymentMethod } = await stripe.createPaymentMethod({
                 type: 'card',
@@ -130,7 +130,7 @@
                 localStorage.removeItem("cart");
                 window.location.href = "thank-you.html";
             } else {
-                document.getElementById("error-message").textContent = "Platba selhala.";
+                document.getElementById("error-message").textContent = "Payment failed.";
             }
         });
     </script>
