@@ -3,133 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Stylish and modern e-shop with original design clothing.">
-  <meta name="keywords" content="Home, About us, Cart, Search">
-  <meta name="author" content="Wearable">
-  <title>Wearable - E-shop with clothing</title>
+  <title>Velox Clothing</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- Header Section -->
   <header>
     <nav>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="cart.html">Cart</a></li>
-          <input type="text" id="search-input" placeholder="Search products..." aria-label="Search products">
-          <button id="search-btn" class="btn-primary">Search</button>
-        </li>
+        <li><a href="#">Domů</a></li>
+        <li><a href="#">Kolekce</a></li>
+        <li><a href="#">Obchod</a></li>
+        <li><a href="#">Kontakt</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Hero Section -->
   <section class="hero">
-    <div class="container">
-      <h2>Stylish clothing with original designs.</h2>
-      <p>Discover our collection and choose something that suits your style.</p>
-      <a href="#categories" class="btn-primary">Explore categories</a>
+    <h2>Vítejte ve Velox</h2>
+    <p>Nejnovější trendy v oblečení</p>
+    <a href="#" class="btn-primary">Prozkoumat</a>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <p class="cta-text">Prozkoumejte naši nabídku</p>
+    <div class="category-buttons">
+      <a href="#" class="category-btn">Trička</a>
+      <a href="#" class="category-btn">Mikiny</a>
+      <a href="#" class="category-btn">Merch</a>
+      <a href="#" class="category-btn">Limitka</a>
+      <a href="#" class="category-btn">Všechno</a>
     </div>
   </section>
 
-<!-- Example for T-shirt category -->
-<section id="categories" class="categories">
-  <div class="container">
-    <div class="cta-text">What are you looking for?</div>
-    <div class="category-buttons">
-      <a href="t-shirts.html" class="category-btn" id="tshirts-link">T-shirts</a>
-      <a href="hoodies.html" class="category-btn" id="hoodies-link">Hoodies</a>
-      <a href="merch.html" class="category-btn" id="merch-link">Merch</a>
-      <a href="limited.html" class="category-btn" id="limited-link">Limited</a>
-      <a href="everything.html" class="category-btn" id="everything-link">Everything</a>
+  <!-- Product List Section -->
+  <section class="product-list">
+    <div class="product">
+      <img src="images/product1.jpg" alt="Produkt 1">
+      <h3>Tričko</h3>
+      <p class="price">499 Kč</p>
+      <button class="add-to-cart">Přidat do košíku</button>
     </div>
-  </div>
-</section>
+    <div class="product">
+      <img src="images/product2.jpg" alt="Produkt 2">
+      <h3>Mikina</h3>
+      <p class="price">799 Kč</p>
+      <button class="add-to-cart">Přidat do košíku</button>
+    </div>
+    <div class="product">
+      <img src="images/product3.jpg" alt="Produkt 3">
+      <h3>Limitka</h3>
+      <p class="price">999 Kč</p>
+      <button class="add-to-cart">Přidat do košíku</button>
+    </div>
+  </section>
 
-  <!-- Footer -->
+  <!-- Footer Section -->
   <footer>
-    <p>&copy; 2025 VeloxWearable. All rights reserved.</p>
+    <p>© 2025 Velox Clothing. Všechna práva vyhrazena.</p>
   </footer>
 
-  <!-- Skript: Kategorie přesměrování -->
-  <script>
-    const categoryLinks = {
-      'tshirts-link': 't-shirts.html',
-      'hoodies-link': 'hoodies.html',
-      'merch-link': 'merch.html',
-      'limited-link': 'limited.html',
-      'everything-link': 'everything.html'
-    };
-
-    Object.keys(categoryLinks).forEach(id => {
-      document.getElementById(id).addEventListener('click', (event) => {
-        event.preventDefault();
-        window.location.href = categoryLinks[id];
-      });
-    });
-  </script>
-
-  <!-- Skript: Vyhledávání -->
-  <script>
-    document.getElementById("search-btn").addEventListener("click", function() {
-      const query = document.getElementById("search-input").value.trim().toLowerCase();
-      if (!query) {
-        alert("Prosím, zadejte hledaný výraz.");
-        return;
-      }
-
-      const products = document.querySelectorAll(".product");
-      let found = false;
-
-      products.forEach(product => {
-        const name = product.querySelector(".product-name").textContent.toLowerCase();
-        if (name.includes(query)) {
-          product.style.display = "block";
-          found = true;
-        } else {
-          product.style.display = "none";
-        }
-      });
-
-      if (!found) alert("Žádný produkt nenalezen.");
-    });
-  </script>
-
-  <!-- Skript: Košík -->
-<script>
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  // Function to update the cart in localStorage
-  function updateCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
-
-  // Function to add an item to the cart
-  function addToCart(product) {
-    cart.push(product);
-    updateCart();
-    alert(`Product added to cart: ${product.name}`);
-  }
-
-  // Add event listeners to "Add to Cart" buttons
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', (event) => {
-      const productElement = event.target.closest('.product');
-      const product = {
-        name: productElement.querySelector('h3').textContent,
-        price: parseFloat(productElement.querySelector('.price').textContent.replace('$', '')),
-        quantity: 1
-      };
-      addToCart(product);
-    });
-  });
-</script>
-<script>
-  document.querySelector(".add-to-cart").addEventListener("click", function() {
-    alert("Product added to cart!");
-  });
-</script>
 </body>
 </html>
