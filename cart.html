@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Košík</title>
+    <title>Cart</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Globální styly */
+        /* Global styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f4;
@@ -31,7 +31,7 @@
             margin-right: 20px;
         }
 
-        /* Styl pro tlačítko "Back" */
+        /* "Back" button style */
         .back-button {
             position: absolute;
             top: 20px;
@@ -50,7 +50,7 @@
             background-color: #ff7f00;
         }
 
-        /* Styl pro obsah košíku */
+        /* Cart modal styles */
         #cart-modal {
             max-width: 1000px;
             margin: 80px auto;
@@ -87,7 +87,7 @@
             font-size: 1.2em;
         }
 
-        /* Styl pro tlačítka v košíku */
+        /* Remove button style */
         .remove-btn {
             background-color: #ff4d4d;
             color: white;
@@ -102,7 +102,7 @@
             background-color: #e60000;
         }
 
-        /* Styl pro tlačítko pokračování k platbě */
+        /* Proceed button style */
         button {
             background-color: #f4a300;
             color: white;
@@ -134,16 +134,16 @@
     </header>
 
     <!-- Back button -->
-    <button class="back-button" onclick="window.location.href='index.html';">Zpět</button>
+    <button class="back-button" onclick="window.location.href='index.html';">Back</button>
 
     <div id="cart-modal">
-        <h2>Váš košík</h2>
+        <h2>Your Cart</h2>
         <ul id="cart-items">
-            <!-- Produkty se načtou sem -->
+            <!-- Products will load here -->
         </ul>
 
-        <!-- Pokračování k platbě -->
-        <button onclick="window.location.href='payment-methods.html';">Pokračovat k platbě</button>
+        <!-- Proceed to confirmation -->
+        <button onclick="window.location.href='confirmation.html';">Proceed to Confirmation</button>
     </div>
 
     <script>
@@ -152,16 +152,16 @@
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = "<li>Košík je prázdný.</li>";
+                cartItemsContainer.innerHTML = "<li>Your cart is empty.</li>";
             } else {
                 cart.forEach((item, index) => {
                     const li = document.createElement("li");
                     li.innerHTML = ` 
                         <div>
                             <strong>${item.name}</strong> <br>
-                            Velikost: ${item.size.toUpperCase()} |
-                            Barva: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} |
-                            Cena: $${item.price}
+                            Size: ${item.size.toUpperCase()} |
+                            Color: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} |
+                            Price: $${item.price}
                         </div>
                         <button class="remove-btn" onclick="removeItem(${index})">❌</button>
                     `;
@@ -174,8 +174,9 @@
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
             cart.splice(index, 1);
             localStorage.setItem("cart", JSON.stringify(cart));
-            location.reload(); // aktualizuje stránku
+            location.reload(); // reloads the page
         }
     </script>
 </body>
 </html>
+
