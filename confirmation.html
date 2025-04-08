@@ -6,9 +6,6 @@
     <title>Potvrzení objednávky</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://js.stripe.com/v3/"></script>
-    <style>
-        /* Your existing styles... */
-    </style>
 </head>
 <body>
     <header>
@@ -22,46 +19,37 @@
 
     <div id="confirmation">
         <h3>Potvrzení objednávky</h3>
-
         <form id="order-form">
             <div class="form-group">
                 <label for="address">Adresa</label>
-                <input type="text" id="address" name="address" placeholder="Zadejte adresu" required>
+                <input type="text" id="address" name="address" required>
             </div>
 
             <div class="form-group">
                 <label for="phone">Telefon</label>
-                <input type="tel" id="phone" name="phone" placeholder="Zadejte telefonní číslo" required>
+                <input type="tel" id="phone" name="phone" required>
             </div>
 
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Zadejte email" required>
+                <input type="email" id="email" name="email" required>
             </div>
 
             <div class="form-group">
                 <label for="payment-method">Vyberte platební metodu</label>
                 <select id="payment-method" name="payment-method" required>
-                    <option value="visa">Visa</option>
-                    <option value="mastercard">Mastercard</option>
-                    <option value="paypal">PayPal</option>
-                    <option value="google-pay">Google Pay</option>
-                    <option value="apple-pay">Apple Pay</option>
+                    <option value="card">Kreditní / Debetní karta</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="card-element">Platební karta</label>
-                <div id="card-element">
-                    <!-- Stripe Elements bude tady -->
-                </div>
+                <div id="card-element"></div>
             </div>
 
             <div class="form-group">
-                <label for="cart-items">Seznam produktů:</label>
-                <ul id="cart-items">
-                    <!-- Produkty se načtou sem -->
-                </ul>
+                <label>Seznam produktů:</label>
+                <ul id="cart-items"></ul>
             </div>
 
             <div class="total-price">
@@ -76,12 +64,12 @@
     <script>
         const stripe = Stripe('pk_test_51RBbEUQ5LEQiTTFxItmW9KjLnpyNBOTBBzoqnanY9YxEuphNFGlUUViCHYMBykCAwqwS9HXXgczRA53L9r9wi7G900hymrqJ8r');
         const elements = stripe.elements();
-        const cardElement = elements.create('card');
-        cardElement.mount('#card-element');
+        const card = elements.create('card');
+        card.mount('#card-element');
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const cartItemsContainer = document.getElementById("cart-items");
+        document.addEventListener("DOMContentLoaded", () => {
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItemsContainer = document.getElementById("cart-items");
             let totalPrice = 0;
 
             if (cart.length === 0) {
@@ -89,54 +77,59 @@
             } else {
                 cart.forEach(item => {
                     const li = document.createElement("li");
-                    li.innerHTML = ` 
-                        <strong>${item.name}</strong> - ${item.size.toUpperCase()} - ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} - ${item.price} Kč
-                    `;
+                    li.textContent = `${item.name} - ${item.size} - ${item.color} - ${item.price} Kč`;
                     cartItemsContainer.appendChild(li);
                     totalPrice += item.price;
                 });
-
-                // Aktualizace celkové částky
                 document.getElementById("total-price").textContent = `${totalPrice} Kč`;
             }
         });
 
-        document.getElementById("order-form").addEventListener("submit", function (event) {
+        document.getElementById("order-form").addEventListener("submit", async (event) => {
             event.preventDefault();
 
             const address = document.getElementById("address").value;
             const phone = document.getElementById("phone").value;
             const email = document.getElementById("email").value;
 
-            // Vytvoření tokenu pro platbu
-            stripe.createPaymentMethod('card', cardElement).then(function(result) {
-                if (result.error) {
-                    document.getElementById("error-message").textContent = "Platba se nezdařila: " + result.error.message;
-                } else {
-                    // Odeslání platebního tokenu na server pro zpracování platby
-                    fetch('/create-payment-intent', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            payment_method: result.paymentMethod.id,
-                            address: address,
-                            phone: phone,
-                            email: email
-                        }),
-                    }).then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Po úspěšné platbě: odstranění položek z košíku a přesměrování
-                            localStorage.removeItem("cart");
-                            window.location.href = "thank-you.html"; // Přesměrování na stránku potvrzení
-                        } else {
-                            document.getElementById("error-message").textContent = "Platba byla zamítnuta.";
-                        }
-                    });
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+                type: 'card',
+                card: card,
+                billing_details: {
+                    email: email,
+                    phone: phone,
+                    address: {
+                        line1: address
+                    }
                 }
             });
+
+            if (error) {
+                document.getElementById("error-message").textContent = error.message;
+                return;
+            }
+
+            const response = await fetch('/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    payment_method: paymentMethod.id,
+                    email,
+                    phone,
+                    address
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                localStorage.removeItem("cart");
+                window.location.href = "thank-you.html";
+            } else {
+                document.getElementById("error-message").textContent = "Platba selhala.";
+            }
         });
     </script>
 </body>
