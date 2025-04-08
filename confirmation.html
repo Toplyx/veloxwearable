@@ -74,6 +74,12 @@
             border: 1px solid #ccc;
         }
 
+        #card-element {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
         button {
             background-color: #f4a300;
             color: white;
@@ -136,6 +142,13 @@
             </div>
 
             <div class="form-group">
+                <label for="card-element">Platební karta</label>
+                <div id="card-element">
+                    <!-- Stripe Elements bude tady -->
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="cart-items">Seznam produktů:</label>
                 <ul id="cart-items">
                     <!-- Produkty se načtou sem -->
@@ -147,9 +160,11 @@
     </div>
 
     <script>
-        const stripe = Stripe('tvůj_public_key_z_Stripe'); // Tvůj public key z Stripe
+        const stripe = Stripe('pk_live_51RBbEMLKaPXzbcraOswMQAwymEdXDsjcmWxihomW3TYQVcKBQVESFGneCnCy9mI0MYePHIWo2w7Vm62vMMq4IFOD00GAyMnuIy'); // Tvůj public key z Stripe
         const elements = stripe.elements();
-        
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
         document.addEventListener("DOMContentLoaded", function () {
             const cartItemsContainer = document.getElementById("cart-items");
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -159,7 +174,7 @@
             } else {
                 cart.forEach(item => {
                     const li = document.createElement("li");
-                    li.innerHTML = `
+                    li.innerHTML = ` 
                         <strong>${item.name}</strong> - ${item.size.toUpperCase()} - ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} - $${item.price}
                     `;
                     cartItemsContainer.appendChild(li);
@@ -173,7 +188,6 @@
             const address = document.getElementById("address").value;
             const phone = document.getElementById("phone").value;
             const email = document.getElementById("email").value;
-            const paymentMethod = document.getElementById("payment-method").value;
 
             // Vytvoření tokenu pro platbu (pro Stripe)
             stripe.createPaymentMethod('card', cardElement).then(function(result) {
@@ -190,13 +204,12 @@
                             payment_method: result.paymentMethod.id,
                             address: address,
                             phone: phone,
-                            email: email,
-                            payment_method_type: paymentMethod
+                            email: email
                         }),
                     }).then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert(`Objednávka potvrzena!\n\nAdresa: ${address}\nTelefon: ${phone}\nEmail: ${email}\nPlatba: ${paymentMethod}`);
+                            alert(`Objednávka potvrzena!\n\nAdresa: ${address}\nTelefon: ${phone}\nEmail: ${email}`);
                         } else {
                             alert('Platba se nezdařila!');
                         }
