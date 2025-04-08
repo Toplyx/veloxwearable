@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potvrzení objednávky</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
 
+        header {
+            background-color: #111;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        #thank-you {
+            background-color: #fff;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 900px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #thank-you h3 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .thank-you-message {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #f4a300;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        button:hover {
+            background-color: white;
+            color: #f4a300;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="thank-you">
+        <h3>Děkujeme za vaši objednávku!</h3>
+        <div class="thank-you-message">
+            <p>Vaše platba byla úspěšně zpracována. Vaše objednávka je nyní potvrzena!</p>
+            <p>Očekávejte, že brzy obdržíte potvrzující email s detaily objednávky.</p>
+        </div>
+        <button onclick="window.location.href='index.html';">Pokračovat v nákupu</button>
+    </div>
+</body>
+</html>
