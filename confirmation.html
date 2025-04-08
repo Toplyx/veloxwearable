@@ -98,6 +98,19 @@
             color: #f4a300;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
+        .error-message {
+            color: red;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .total-price {
+            font-size: 1.5em;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -154,12 +167,17 @@
                 </ul>
             </div>
 
+            <div class="total-price">
+                Celková částka: <span id="total-price">0 Kč</span>
+            </div>
+
             <button type="submit">Dokončit platbu</button>
+            <div class="error-message" id="error-message"></div>
         </form>
     </div>
 
     <script>
-        const stripe = Stripe('pk_live_51RBbEMLKaPXzbcraOswMQAwymEdXDsjcmWxihomW3TYQVcKBQVESFGneCnCy9mI0MYePHIWo2w7Vm62vMMq4IFOD00GAyMnuIy'); // Tvůj public key z Stripe
+        const stripe = Stripe('pk_live_51RBbEMLKaPXzbcraOswMQAwymEdXDsjcmWxihomW3TYQVcKBQVESFGneCnCy9mI0MYePHIWo2w7Vm62vMMq4IFOD00GAyMnuIy');
         const elements = stripe.elements();
         const cardElement = elements.create('card');
         cardElement.mount('#card-element');
@@ -167,17 +185,22 @@
         document.addEventListener("DOMContentLoaded", function () {
             const cartItemsContainer = document.getElementById("cart-items");
             const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let totalPrice = 0;
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = "<li>Košík je prázdný.</li>";
             } else {
                 cart.forEach(item => {
                     const li = document.createElement("li");
-                    li.innerHTML = ` 
+                    li.innerHTML = `
                         <strong>${item.name}</strong> - ${item.size.toUpperCase()} - ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} - $${item.price}
                     `;
                     cartItemsContainer.appendChild(li);
+                    totalPrice += item.price;
                 });
+
+                // Aktualizace celkové částky
+                document.getElementById("total-price").textContent = `${totalPrice} Kč`;
             }
         });
 
@@ -188,10 +211,10 @@
             const phone = document.getElementById("phone").value;
             const email = document.getElementById("email").value;
 
-            // Vytvoření tokenu pro platbu (pro Stripe)
+            // Vytvoření tokenu pro platbu
             stripe.createPaymentMethod('card', cardElement).then(function(result) {
                 if (result.error) {
-                    alert(result.error.message);
+                    document.getElementById("error-message").textContent = "Platba se nezdařila: " + result.error.message;
                 } else {
                     // Odeslání platebního tokenu na server pro zpracování platby
                     fetch('/create-payment-intent', {
@@ -208,9 +231,11 @@
                     }).then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            alert(`Objednávka potvrzena!\n\nAdresa: ${address}\nTelefon: ${phone}\nEmail: ${email}`);
+                            // Po úspěšné platbě: odstranění položek z košíku a přesměrování
+                            localStorage.removeItem("cart");
+                            window.location.href = "confirmation.html"; // Přesměrování na stránku potvrzení
                         } else {
-                            alert('Platba se nezdařila!');
+                            document.getElementById("error-message").textContent = "Platba byla zamítnuta.";
                         }
                     });
                 }
