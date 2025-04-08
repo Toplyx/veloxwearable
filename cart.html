@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Global styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
+            color: #333;
         }
 
         header {
@@ -31,28 +31,27 @@
             margin-right: 20px;
         }
 
-        /* "Back" button style */
         .back-button {
             position: absolute;
             top: 20px;
             left: 20px;
-            background-color: #f4a300;
+            background-color: #ff6347;
             color: white;
             border: none;
             padding: 12px 20px;
-            border-radius: 25px;
+            border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         .back-button:hover {
-            background-color: #ff7f00;
+            background-color: #ff4500;
         }
 
-        /* Cart modal styles */
         #cart-modal {
-            max-width: 1000px;
+            width: 90%;
+            max-width: 900px;
             margin: 80px auto;
             background-color: white;
             padding: 40px;
@@ -61,9 +60,10 @@
         }
 
         #cart-modal h2 {
+            font-size: 2.5em;
             text-align: center;
-            font-size: 2em;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            color: #111;
         }
 
         #cart-items {
@@ -73,64 +73,57 @@
         }
 
         #cart-items li {
-            background-color: #f9f9f9;
+            background-color: #fff;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        #cart-items li strong {
-            font-size: 1.2em;
+        #cart-items li:hover {
+            transform: translateY(-5px);
         }
 
-        /* Remove button style */
+        .item-info {
+            flex-grow: 1;
+        }
+
         .remove-btn {
             background-color: #ff4d4d;
             color: white;
             border: none;
-            padding: 15px 20px;
-            font-size: 1.5em;
+            padding: 10px 20px;
+            font-size: 1.4em;
             border-radius: 50%;
             cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            text-align: center;
+            transition: background-color 0.3s ease;
         }
 
         .remove-btn:hover {
             background-color: #e60000;
         }
 
-        .remove-btn:focus {
-            outline: none;
-        }
-
-        /* Proceed button style */
         button {
-            background-color: #f4a300;
+            background-color: #ff6347;
             color: white;
             border: none;
             padding: 15px 30px;
             font-size: 1.2em;
-            border-radius: 50px;
+            border-radius: 30px;
             cursor: pointer;
             transition: 0.3s ease;
+            width: 100%;
+            max-width: 300px;
             display: block;
             margin: 30px auto 0;
         }
 
         button:hover {
-            background-color: white;
-            color: #f4a300;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: #ff4500;
         }
     </style>
 </head>
@@ -144,17 +137,15 @@
         </nav>
     </header>
 
-    <!-- Back button -->
     <button class="back-button" onclick="window.location.href='index.html';">Back</button>
 
     <div id="cart-modal">
         <h2>Your Cart</h2>
         <ul id="cart-items">
-            <!-- Products will load here -->
+            <!-- Cart items will load here -->
         </ul>
 
-        <!-- Proceed to confirmation -->
-        <button onclick="window.location.href='confirmation.html';">Proceed to Confirmation</button>
+        <button onclick="window.location.href='confirmation.html';">Proceed to Checkout</button>
     </div>
 
     <script>
@@ -167,16 +158,12 @@
             } else {
                 cart.forEach((item, index) => {
                     const li = document.createElement("li");
-                    li.innerHTML = ` 
-                        <div>
-                            <strong>${item.name}</strong> <br>
-                            Size: ${item.size.toUpperCase()} |
-                            Color: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} |
-                            Price: $${item.price}
+                    li.innerHTML = `
+                        <div class="item-info">
+                            <strong>${item.name}</strong><br>
+                            Size: ${item.size.toUpperCase()} | Color: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} | Price: $${item.price}
                         </div>
-                        <button class="remove-btn" onclick="removeItem(${index})">
-                            &times;
-                        </button>
+                        <button class="remove-btn" onclick="removeItem(${index})">&times;</button>
                     `;
                     cartItemsContainer.appendChild(li);
                 });
@@ -187,7 +174,7 @@
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
             cart.splice(index, 1);
             localStorage.setItem("cart", JSON.stringify(cart));
-            location.reload(); // reloads the page
+            location.reload(); // reload the page
         }
     </script>
 </body>
