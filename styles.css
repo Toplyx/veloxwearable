@@ -1,4 +1,4 @@
-/* General reset and box-sizing */
+ /* General reset and box-sizing */
 * {
     margin: 0;
     padding: 0;
@@ -26,15 +26,15 @@ header {
 }
 
 header:hover {
-    background-color: #222;
+    background-color: #222; /* Darken on hover */
 }
 
 /* Navigation styles */
 header nav ul {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    list-style: none;
+    display: flex; /* Flexbox for row layout */
+    justify-content: center; /* Center align items */
+    gap: 40px; /* Spacing between items */
+    list-style: none; /* Remove default list styling */
     padding: 0;
     margin: 0;
 }
@@ -45,17 +45,17 @@ header nav ul li {
 
 header nav ul li a {
     text-decoration: none;
-    color: #fff;
-    font-size: 1.2em;
+    color: #fff; /* Text color */
+    font-size: 1.2em; /* Font size */
     font-weight: 600;
     transition: color 0.3s ease;
-    padding: 5px 10px;
+    padding: 5px 10px; /* Add some padding for better spacing */
 }
 
 header nav ul li a:hover {
-    color: #f4a300;
-    background-color: #333;
-    border-radius: 5px;
+    color: #f4a300; /* Color change on hover */
+    background-color: #333; /* Dark background on hover */
+    border-radius: 5px; /* Smooth rounded corners */
 }
 
 /* Hero Section */
@@ -75,7 +75,7 @@ header nav ul li a:hover {
     letter-spacing: 5px;
     text-transform: uppercase;
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
-    animation: fadeIn 1.5s ease-in-out;
+    animation: fadeIn 1.5s ease-in-out; /* Animation for title */
 }
 
 .hero p {
@@ -100,7 +100,7 @@ header nav ul li a:hover {
     background-color: #fff;
     color: #f4a300;
     transform: scale(1.1);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Slight shadow on hover */
 }
 
 /* Categories Section */
@@ -215,8 +215,10 @@ header nav ul li a:hover {
 }
 
 .product .add-to-cart:hover {
-    background-color: #333;
-    transform: scale(1.1);
+    background-color: #fff;
+    color: #f4a300;
+    transform: translateY(-3px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Footer */
@@ -224,56 +226,361 @@ footer {
     background-color: #111;
     color: #fff;
     text-align: center;
-    padding: 20px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    padding: 20px 0;
+    margin-top: 40px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 footer p {
-    font-size: 1.2em;
-    font-weight: 500;
+    font-size: 1em;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
-/* Media Queries */
+/* Mobile Version */
 @media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    /* Uspořádání navigace na mobilu */
+    header nav ul {
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+    }
+
+    header nav ul li a {
+        font-size: 1em;
+        padding: 10px 0;
+    }
+    
+    /* Snížení velikosti písma pro nadpisy na mobilu */
     .hero h2 {
         font-size: 3.5em;
     }
 
+    /* Úprava gridu pro produkty */
     .product-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .category-btn {
-        padding: 15px 35px;
-        font-size: 1.3em;
-    }
-}
-
-@media (max-width: 480px) {
-    header nav ul {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 20px;
     }
 
-    .hero h2 {
-        font-size: 2.5em;
+    .product {
+        width: 100%;
+        padding: 15px;
     }
 
-    .product-list {
-        grid-template-columns: 1fr;
+    .category-buttons {
+        flex-direction: column;
+        gap: 20px;
     }
 }
 
-/* Animations */
 @keyframes fadeIn {
-    0% {
+    from {
         opacity: 0;
         transform: translateY(-20px);
     }
-    100% {
+    to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+/* Základní styl pro input */
+#search-input {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    width: 300px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Při focení inputu */
+#search-input:focus {
+    border-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Styl pro tlačítko */
+#search-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 10px;
+}
+
+/* Efekt při hoveru (přechod) */
+#search-btn:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+/* Efekt při kliknutí na tlačítko */
+#search-btn:active {
+    transform: scale(1);
+}
+
+/* Zajistit, aby input a tlačítko byly na stejné úrovni */
+li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+   }
+/* Styl pro všechna tlačítka */
+button, #search-btn, #cart-btn {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: #f4a300;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* Efekt při hoveru pro všechna tlačítka */
+button:hover, #search-btn:hover, #cart-btn:hover {
+    background-color: #fff;
+    color: #f4a300;
+    transform: translateY(-3px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Efekt při kliknutí na tlačítko */
+button:active, #search-btn:active, #cart-btn:active {
+    transform: scale(1);
+   }
+.cart-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.cart-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+ }
+.add-to-cart {
+  fill: var(--svg-fill, none);
+  stroke: var(--svg-stroke, none); /* opravený název */
+  stroke-width: var(--svg-stroke-width, 2); /* opravená syntaxe */
+}
+.product-detail {
+    display: flex;
+    gap: 50px;
+    padding: 60px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+.product-image img {
+    width: 450px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-info h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.product-description {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #444;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.options label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.options select {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+.price {
+    font-size: 2em;
+    color: #f4a300;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.add-to-cart-btn {
+    background-color: #f4a300;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #fff;
+    color: #f4a300;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+   }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#confirmation {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"], input[type="tel"], input[type="email"], select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#card-element {
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+button.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button.submit-btn:hover {
+    background-color: #555;
+}
+
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+   }
 }
