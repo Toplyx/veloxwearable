@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stylish T-shirts with original designs.">
-    <meta name="keywords" content="T-shirts, Clothing, Fashion, E-shop">
+    <meta name="description" content="Stylish Merch with original designs.">
+    <meta name="keywords" content="Merch, Clothing, Fashion, E-shop">
     <meta name="author" content="Wearable">
     <title>Merch - Wearable E-shop</title>
     <link rel="stylesheet" href="styles.css">
@@ -20,7 +20,10 @@
                     <li><a href="about.html">About us</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="cart.html">Cart</a></li>
-                    <li><a href="search.html">Search</a></li>
+                    <li>
+                        <input type="text" id="search-input" placeholder="Search products..." aria-label="Search products">
+                        <button id="search-btn" class="btn-primary">Search</button>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -30,7 +33,7 @@
     <section class="hero">
         <div class="container">
             <h2>Stylish Clothing with Original Designs</h2>
-            <p>Choose your perfect match from our exclusive T-shirt collection.</p>
+            <p>Choose your perfect match from our exclusive Merch collection.</p>
         </div>
     </section>
 
@@ -44,7 +47,7 @@
                     <a href="product.html?id=1">
                         <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="I WEAR, I(Dont)CARE" width="300">
                     </a>
-                    <h3>I WEAR, I DON'T CARE Black T-shirt</h3>
+                    <h3 class="product-name">I WEAR, I DON'T CARE Black T-shirt</h3>
                     <p class="price">20$</p>
                     <a href="product.html?id=1">
                         <button class="add-to-cart">Add to cart</button>
@@ -56,7 +59,7 @@
                     <a href="product.html?id=2">
                         <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="I WEAR, I(Dont)CARE" width="300">
                     </a>
-                    <h3>I WEAR, I DON'T CARE Black T-shirt</h3>
+                    <h3 class="product-name">I WEAR, I DON'T CARE Black T-shirt</h3>
                     <p class="price">20$</p>
                     <a href="product.html?id=2">
                         <button class="add-to-cart">Add to cart</button>
@@ -68,7 +71,7 @@
                     <a href="product.html?id=3">
                         <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="I WEAR, I(Dont)CARE" width="300">
                     </a>
-                    <h3>I WEAR, I DON'T CARE Black T-shirt</h3>
+                    <h3 class="product-name">I WEAR, I DON'T CARE Black T-shirt</h3>
                     <p class="price">20$</p>
                     <a href="product.html?id=3">
                         <button class="add-to-cart">Add to cart</button>
@@ -82,5 +85,32 @@
     <footer>
         <p>&copy; 2025 Wearable. All rights reserved.</p>
     </footer>
+
+    <!-- Skript: Vyhledávání -->
+    <script>
+        document.getElementById("search-btn").addEventListener("click", function() {
+            const query = document.getElementById("search-input").value.trim().toLowerCase();
+            if (!query) {
+                alert("Prosím, zadejte hledaný výraz.");
+                return;
+            }
+
+            const products = document.querySelectorAll(".product");
+            let found = false;
+
+            products.forEach(product => {
+                const name = product.querySelector(".product-name").textContent.toLowerCase();
+                if (name.includes(query)) {
+                    product.style.display = "block";
+                    found = true;
+                } else {
+                    product.style.display = "none";
+                }
+            });
+
+            if (!found) alert("Žádný produkt nenalezen.");
+        });
+    </script>
+
 </body>
 </html>
