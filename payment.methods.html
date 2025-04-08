@@ -45,26 +45,6 @@
             text-align: center;
         }
 
-        .payment-options {
-            display: flex;
-            justify-content: space-evenly;
-            margin-bottom: 30px;
-        }
-
-        .payment-options label {
-            cursor: pointer;
-        }
-
-        .payment-options input {
-            display: none;
-        }
-
-        .payment-options img {
-            width: 100px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
         button {
             background-color: #f4a300;
             color: white;
@@ -96,32 +76,8 @@
     </header>
 
     <div id="payment-methods">
-        <h3>Vyberte metodu platby</h3>
-        <div class="payment-options">
-            <label>
-                <input type="radio" name="payment-method" value="visa">
-                <img src="images/visa-logo.png" alt="Visa"/>
-            </label>
-            <label>
-                <input type="radio" name="payment-method" value="mastercard">
-                <img src="images/mastercard-logo.png" alt="MasterCard"/>
-            </label>
-            <label>
-                <input type="radio" name="payment-method" value="paypal">
-                <img src="images/paypal-logo.png" alt="PayPal"/>
-            </label>
-            <label>
-                <input type="radio" name="payment-method" value="google-pay">
-                <img src="images/google-pay-logo.png" alt="Google Pay"/>
-            </label>
-            <label>
-                <input type="radio" name="payment-method" value="apple-pay">
-                <img src="images/apple-pay-logo.png" alt="Apple Pay"/>
-            </label>
-        </div>
-
+        <h3>Pokračujte v objednávce</h3>
         <button onclick="window.location.href='confirmation.html';">Dokončit objednávku</button>
     </div>
 </body>
 </html>
-
