@@ -6,7 +6,32 @@
     <title>Košík</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Styl pro "Back" tlačítko */
+        /* Globální styly */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #111;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        /* Styl pro tlačítko "Back" */
         .back-button {
             position: absolute;
             top: 20px;
@@ -14,12 +39,87 @@
             background-color: #f4a300;
             color: white;
             border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #ff7f00;
+        }
+
+        /* Styl pro obsah košíku */
+        #cart-modal {
+            max-width: 1000px;
+            margin: 80px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #cart-modal h2 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #cart-items li {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #cart-items li strong {
+            font-size: 1.2em;
+        }
+
+        /* Styl pro tlačítka v košíku */
+        .remove-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .back-button:hover {
-            background-color: #ff7f00;
+
+        .remove-btn:hover {
+            background-color: #e60000;
+        }
+
+        /* Styl pro tlačítko pokračování k platbě */
+        button {
+            background-color: #f4a300;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s ease;
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        button:hover {
+            background-color: white;
+            color: #f4a300;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -34,7 +134,7 @@
     </header>
 
     <!-- Back button -->
-    <button class="back-button" onclick="window.location.href='index.html';">Back</button>
+    <button class="back-button" onclick="window.location.href='index.html';">Zpět</button>
 
     <div id="cart-modal">
         <h2>Váš košík</h2>
@@ -57,13 +157,14 @@
                 cart.forEach((item, index) => {
                     const li = document.createElement("li");
                     li.innerHTML = ` 
-                        <strong>${item.name}</strong> <br>
-                        Velikost: ${item.size.toUpperCase()} |
-                        Barva: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} |
-                        Cena: $${item.price}
-                        <button onclick="removeItem(${index})" style="margin-left: 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">❌</button>
+                        <div>
+                            <strong>${item.name}</strong> <br>
+                            Velikost: ${item.size.toUpperCase()} |
+                            Barva: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} |
+                            Cena: $${item.price}
+                        </div>
+                        <button class="remove-btn" onclick="removeItem(${index})">❌</button>
                     `;
-                    li.style.marginBottom = "15px";
                     cartItemsContainer.appendChild(li);
                 });
             }
