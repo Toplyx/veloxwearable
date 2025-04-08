@@ -89,21 +89,16 @@
 
         /* Remove button style */
         .remove-btn {
-            background-color: #ff4d4d;
-            color: white;
+            background-color: transparent;
+            color: #ff4d4d;
             border: none;
-            padding: 10px;
-            border-radius: 50%;
             cursor: pointer;
-            transition: background-color 0.3s;
             font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: color 0.3s;
         }
 
         .remove-btn:hover {
-            background-color: #e60000;
+            color: #e60000;
         }
 
         /* Proceed button style */
@@ -168,7 +163,7 @@
                             Price: $${item.price}
                         </div>
                         <button class="remove-btn" onclick="removeItem(${index})">
-                            <span aria-hidden="true">&times;</span>
+                            &times;
                         </button>
                     `;
                     cartItemsContainer.appendChild(li);
