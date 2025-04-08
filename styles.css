@@ -583,4 +583,8 @@ ul li {
     padding: 8px 0;
     border-bottom: 1px solid #ddd;
    }
+/* Assuming this is the button for removing products */
+.remove-product-btn {
+    margin-top: -0.5cm; /* Moves the button 0.5cm upwards */
+   }
 }
