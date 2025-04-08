@@ -92,10 +92,14 @@
             background-color: #ff4d4d;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px;
+            border-radius: 50%;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .remove-btn:hover {
@@ -163,7 +167,9 @@
                             Color: ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} |
                             Price: $${item.price}
                         </div>
-                        <button class="remove-btn" onclick="removeItem(${index})">❌</button>
+                        <button class="remove-btn" onclick="removeItem(${index})">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     `;
                     cartItemsContainer.appendChild(li);
                 });
@@ -179,4 +185,3 @@
     </script>
 </body>
 </html>
-
