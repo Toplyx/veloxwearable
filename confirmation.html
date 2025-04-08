@@ -192,8 +192,8 @@
             } else {
                 cart.forEach(item => {
                     const li = document.createElement("li");
-                    li.innerHTML = `
-                        <strong>${item.name}</strong> - ${item.size.toUpperCase()} - ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} - $${item.price}
+                    li.innerHTML = ` 
+                        <strong>${item.name}</strong> - ${item.size.toUpperCase()} - ${item.color.charAt(0).toUpperCase() + item.color.slice(1)} - ${item.price} Kč
                     `;
                     cartItemsContainer.appendChild(li);
                     totalPrice += item.price;
@@ -233,7 +233,7 @@
                         if (data.success) {
                             // Po úspěšné platbě: odstranění položek z košíku a přesměrování
                             localStorage.removeItem("cart");
-                            window.location.href = "confirmation.html"; // Přesměrování na stránku potvrzení
+                            window.location.href = "thank-you.html"; // Přesměrování na stránku potvrzení
                         } else {
                             document.getElementById("error-message").textContent = "Platba byla zamítnuta.";
                         }
