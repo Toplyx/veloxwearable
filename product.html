@@ -12,7 +12,6 @@
             padding: 0;
         }
 
-        /* Navigation Buttons */
         .nav-buttons {
             display: flex;
             justify-content: center;
@@ -130,7 +129,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation buttons -->
     <div class="nav-buttons-left">
         <a href="javascript:history.back()">Back</a>
     </div>
@@ -140,18 +138,14 @@
         <a href="cart.html">Cart</a>
     </div>
 
-    <!-- Product Details Section -->
     <div class="product-detail">
         <div class="product-image">
-            <img src="images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg" alt="I WEAR, I DON'T CARE T-shirt" />
+            <img src="" alt="" />
         </div>
 
         <div class="product-info">
-            <h1>I WEAR, I DON'T CARE</h1>
-            <p class="product-description">
-                This bold black t-shirt makes a statement. Designed for those who live confidently,
-                this shirt is made of premium cotton, offering all-day comfort and style. Be bold, be different.
-            </p>
+            <h1></h1>
+            <p class="product-description"></p>
 
             <div class="options">
                 <label for="size">Size:</label>
@@ -169,26 +163,74 @@
                 </select>
             </div>
 
-            <p class="price">$20</p>
+            <p class="price"></p>
             <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
         </div>
     </div>
 
-    <!-- SweetAlert2 Script -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        const products = [
+            {
+                id: 1,
+                name: "I WEAR, I DON'T CARE T-shirt",
+                description: "This bold black t-shirt makes a statement. Designed for those who live confidently, this shirt is made of premium cotton, offering all-day comfort and style. Be bold, be different.",
+                price: 20,
+                image: "images/1f5a6f51-ec6d-4372-9cde-4d4220f1bd24.jpg"
+            },
+            {
+                id: 2,
+                name: 'Velox hoodie China edition',
+                description: 'Unisex and oversized hoodie with unique China-inspired design.',
+                price: 20,
+                image: 'images/Velox(china).png'
+            },
+            {
+                id: 3,
+                name: 'Velox "DIS SH!T FIRE" hoodie',
+                description: 'A hoodie that makes a statement. Unisex, oversized, bold.',
+                price: 20,
+                image: 'images/Velox-DIS SH!T FIRE.png'
+            },
+            {
+                id: 4,
+                name: 'Velox hoodie Classic',
+                description: 'Classic Velox hoodie - unisex and oversized comfort and style.',
+                price: 20,
+                image: 'images/VeloxWearables.png'
+            },
+        ];
+
+        const params = new URLSearchParams(window.location.search);
+        const productId = parseInt(params.get("id"));
+        const product = products.find(p => p.id === productId);
+
+        if (product) {
+            document.querySelector(".product-image img").src = product.image;
+            document.querySelector(".product-image img").alt = product.name;
+            document.querySelector(".product-info h1").textContent = product.name;
+            document.querySelector(".product-description").textContent = product.description;
+            document.querySelector(".price").textContent = `$${product.price}`;
+        } else {
+            document.querySelector(".product-info h1").textContent = "Product not found";
+            document.querySelector(".product-description").textContent = "We couldn't find this product.";
+            document.querySelector(".product-image img").src = "images/notfound.png";
+        }
+
         function addToCart() {
             const size = document.getElementById("size").value;
             const color = document.getElementById("color").value;
-            const product = {
-                name: "I WEAR, I DON'T CARE T-shirt",
+
+            const cartItem = {
+                id: product.id,
+                name: product.name,
                 size: size,
                 color: color,
-                price: 20
+                price: product.price
             };
 
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.push(product);
+            cart.push(cartItem);
             localStorage.setItem("cart", JSON.stringify(cart));
 
             Swal.fire({
