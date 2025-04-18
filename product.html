@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>I WEAR, I DON'T CARE – Products</title>
+    <title>I WEAR, I DON'T CARE – Detail</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -48,40 +48,63 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
         }
 
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            margin: 50px;
-        }
-
-        .product-card {
+        .product-detail {
+            display: flex;
+            gap: 50px;
+            padding: 60px;
             background-color: #ffffff;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: scale(1.05);
+            max-width: 1200px;
+            margin: 50px auto;
         }
 
         .product-image img {
-            width: 100%;
+            width: 450px;
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .product-name {
-            font-size: 1.5em;
-            margin: 15px 0;
+        .product-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-info h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #111;
+        }
+
+        .product-description {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #444;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .options label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .options select {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 1em;
         }
 
         .price {
-            font-size: 1.2em;
+            font-size: 2em;
             color: #f4a300;
             font-weight: bold;
             margin-bottom: 20px;
@@ -115,8 +138,34 @@
         <a href="cart.html">Cart</a>
     </div>
 
-    <div class="product-list">
-        <!-- Product cards will be injected here by JavaScript -->
+    <div class="product-detail">
+        <div class="product-image">
+            <img src="" alt="" />
+        </div>
+
+        <div class="product-info">
+            <h1></h1>
+            <p class="product-description"></p>
+
+            <div class="options">
+                <label for="size">Size:</label>
+                <select id="size">
+                    <option value="s">Small (S)</option>
+                    <option value="m">Medium (M)</option>
+                    <option value="l">Large (L)</option>
+                    <option value="xl">Extra Large (XL)</option>
+                </select>
+
+                <label for="color">Color:</label>
+                <select id="color">
+                    <option value="black">Black</option>
+                    <option value="white">White</option>
+                </select>
+            </div>
+
+            <p class="price"></p>
+            <button class="add-to-cart-btn" onclick="addToCart()">Add to Cart</button>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -229,39 +278,39 @@
             },
             {
                 id: 109,
-                name: 'Velox I\'M A RA*IST T-shirt edition - unisex and oversized',
-                description: 'Velox I\'M A RA*IST T-shirt edition - unisex and oversized.',
+                name: 'Velox I'M A RA*IST T-shirt edition - unisex and oversized',
+                description: 'Velox I'M A RA*IST T-shirt edition - unisex and oversized.',
                 price: 20,
                 image: 'images/quality_restoration_20250412200056382.jpg'
-            }
+            },
         ];
 
-        const productList = document.querySelector('.product-list');
-        
-        products.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.classList.add('product-card');
-            
-            productCard.innerHTML = `
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" />
-                </div>
-                <div class="product-name">${product.name}</div>
-                <p class="price">$${product.price}</p>
-                <button class="add-to-cart-btn" onclick="addToCart(${product.id})">Add to Cart</button>
-            `;
-            
-            productList.appendChild(productCard);
-        });
+        const params = new URLSearchParams(window.location.search);
+        const productId = parseInt(params.get("id"));
+        const product = products.find(p => p.id === productId);
 
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
+        if (product) {
+            document.querySelector(".product-image img").src = product.image;
+            document.querySelector(".product-image img").alt = product.name;
+            document.querySelector(".product-info h1").textContent = product.name;
+            document.querySelector(".product-description").textContent = product.description;
+            document.querySelector(".price").textContent = $${product.price};
+        } else {
+            document.querySelector(".product-info h1").textContent = "Product not found";
+            document.querySelector(".product-description").textContent = "We couldn't find this product.";
+            document.querySelector(".product-image img").src = "images/notfound.png";
+        }
+
+        function addToCart() {
+            const size = document.getElementById("size").value;
+            const color = document.getElementById("color").value;
 
             const cartItem = {
                 id: product.id,
                 name: product.name,
-                price: product.price,
-                image: product.image
+                size: size,
+                color: color,
+                price: product.price
             };
 
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
