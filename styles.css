@@ -1,4 +1,4 @@
- /* General reset and box-sizing */
+/* General reset and box-sizing */
 * {
     margin: 0;
     padding: 0;
@@ -103,7 +103,52 @@ header nav ul li a:hover {
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Slight shadow on hover */
 }
 
-/* Categories Section */
+/* Search Input and Button */
+#search-input {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    width: 300px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#search-input:focus {
+    border-color: #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#search-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 10px;
+}
+
+#search-btn:hover {
+    background-color: #555;
+    transform: scale(1.05);
+}
+
+#search-btn:active {
+    transform: scale(1);
+}
+
+/* Button Layout */
+li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Category Section */
 .categories {
     background-color: #fff;
     padding: 80px 0;
@@ -149,7 +194,6 @@ header nav ul li a:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     color: #111;
 }
-
 /* Products Section */
 .product-list {
     display: grid;
@@ -584,7 +628,8 @@ ul li {
     border-bottom: 1px solid #ddd;
    }
 /* Assuming this is the button for removing products */
-.remove-product-btn {
+.remove-btn {
     margin-top: -0.5cm; /* Moves the button 0.5cm upwards */
    }
 }
+<button class="remove-btn"
