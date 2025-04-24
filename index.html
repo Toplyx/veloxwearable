@@ -94,36 +94,6 @@
       if (!found) alert("Žádný produkt nenalezen.");
     });
   </script>
-
-  <!-- Skript: Košík -->
-<script>
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  // Function to update the cart in localStorage
-  function updateCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }
-
-  // Function to add an item to the cart
-  function addToCart(product) {
-    cart.push(product);
-    updateCart();
-    alert(Product added to cart: ${product.name});
-  }
-
-  // Add event listeners to "Add to Cart" buttons
-  document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', (event) => {
-      const productElement = event.target.closest('.product');
-      const product = {
-        name: productElement.querySelector('h3').textContent,
-        price: parseFloat(productElement.querySelector('.price').textContent.replace('$', '')),
-        quantity: 1
-      };
-      addToCart(product);
-    });
-  });
-</script>
 <script>
   document.querySelector(".add-to-cart").addEventListener("click", function() {
     alert("Product added to cart!");
