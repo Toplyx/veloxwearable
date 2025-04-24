@@ -301,52 +301,56 @@
             document.querySelector(".product-image img").src = "images/notfound.png";
         }
 
-<script>
-    function addToCart() {
-        const product = { // Toto by mělo být dynamicky načítáno
-            id: "product123",
-            name: "Example Product",
-            price: 199.99
-        };
+    <script>
+        function addToCart() {
+            const product = { // Toto by mělo být dynamicky načítáno
+                id: "product123",
+                name: "Example Product",
+                price: 199.99
+            };
 
-        const size = document.getElementById("size").value;
-        const color = document.getElementById("color").value;
+            const size = document.getElementById("size").value;
+            const color = document.getElementById("color").value;
 
-        if (!size || !color) {
+            console.log(size, color); // Debugging
+
+            if (!size || !color) {
+                Swal.fire({
+                    icon: 'error',
+                    title: '❌ Missing Information',
+                    text: 'Please select both size and color.',
+                    background: '#111',
+                    color: '#fff',
+                    confirmButtonColor: '#f4a300'
+                });
+                return; // Pokud chybí velikost nebo barva, funkce se zastaví
+            }
+
+            const cartItem = {
+                id: product.id,
+                name: product.name,
+                size: size,
+                color: color,
+                price: product.price
+            };
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push(cartItem);
+            localStorage.setItem("cart", JSON.stringify(cart));
+
             Swal.fire({
-                icon: 'error',
-                title: '❌ Missing Information',
-                text: 'Please select both size and color.',
+                icon: 'success',
+                title: '✅ Added!',
+                text: 'Product successfully added to cart.',
                 background: '#111',
                 color: '#fff',
-                confirmButtonColor: '#f4a300'
+                confirmButtonColor: '#f4a300',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = 'cart.html'; // Přesměrování na cart.html
             });
-            return; // Pokud chybí velikost nebo barva, funkce se zastaví
         }
-
-        const cartItem = {
-            id: product.id,
-            name: product.name,
-            size: size,
-            color: color,
-            price: product.price
-        };
-
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push(cartItem);
-        localStorage.setItem("cart", JSON.stringify(cart));
-
-        Swal.fire({
-            icon: 'success',
-            title: '✅ Added!',
-            text: 'Product successfully added to cart.',
-            background: '#111',
-            color: '#fff',
-            confirmButtonColor: '#f4a300',
-            showConfirmButton: false,
-            timer: 1500
-        });
-    }
-</script>
+    </script>
 </body>
 </html>
