@@ -171,7 +171,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const products = [
-            {
+        {
                 id: 1,
                 name: "Velox hoodie China edition - unisex and oversized",
                 description: "This bold black t-shirt makes a statement. Designed for those who live confidently, this shirt is made of premium cotton, offering all-day comfort and style. Be bold, be different.",
@@ -322,8 +322,11 @@
                     title: 'Added to Cart!',
                     text: `${product.name} has been added to your cart.`,
                     confirmButtonText: 'Go to Cart',
+                    cancelButtonText: 'Continue Shopping',
                     showCancelButton: true,
-                    cancelButtonText: 'Continue Shopping'
+                    background: '#f4f4f4',
+                    width: '400px',
+                    padding: '20px',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         window.location.href = 'cart.html';
