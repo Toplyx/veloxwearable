@@ -278,75 +278,59 @@
             },
             {
                 id: 109,
-                name: 'Velox I'M A RA*IST T-shirt edition - unisex and oversized',
-                description: 'Velox I'M A RA*IST T-shirt edition - unisex and oversized.',
+                name: 'Velox I\'M A RA*IST T-shirt edition - unisex and oversized',
+                description: 'Velox I\'M A RA*IST T-shirt edition - unisex and oversized.',
                 price: 20,
                 image: 'images/quality_restoration_20250412200056382.jpg'
             },
         ];
 
-<script>
-    // Fetching product from URL
-    const params = new URLSearchParams(window.location.search);
-    const productId = parseInt(params.get("id"));
-    const product = products.find(p => p.id === productId);
+        // Fetching product from URL
+        const params = new URLSearchParams(window.location.search);
+        const productId = parseInt(params.get("id"));
+        const product = products.find(p => p.id === productId);
 
-    if (product) {
-        document.querySelector(".product-image img").src = product.image;
-        document.querySelector(".product-image img").alt = product.name;
-        document.querySelector(".product-info h1").textContent = product.name;
-        document.querySelector(".product-description").textContent = product.description;
-        document.querySelector(".price").textContent = `${product.price} Kč`; // Correct price format
-    } else {
-        document.querySelector(".product-info h1").textContent = "Product not found";
-        document.querySelector(".product-description").textContent = "We couldn't find this product.";
-        document.querySelector(".product-image img").src = "images/notfound.png";
-    }
-
-    function addToCart() {
-        // Use the loaded product for adding to cart
-        const size = document.getElementById("size").value;
-        const color = document.getElementById("color").value;
-
-        console.log(size, color); // Debugging
-
-        if (!size || !color) {
-            Swal.fire({
-                icon: 'error',
-                title: '❌ Missing Information',
-                text: 'Please select both size and color.',
-                background: '#111',
-                color: '#fff',
-                confirmButtonColor: '#f4a300'
-            });
-            return; // Stop if size or color is missing
+        // Show product details
+        if (product) {
+            document.querySelector('.product-image img').src = product.image;
+            document.querySelector('.product-image img').alt = product.name;
+            document.querySelector('h1').innerText = product.name;
+            document.querySelector('.product-description').innerText = product.description;
+            document.querySelector('.price').innerText = `$${product.price}`;
         }
 
-        const cartItem = {
-            id: product.id,  // Use the actual product object here
-            name: product.name,
-            size: size,
-            color: color,
-            price: product.price
-        };
+        function addToCart() {
+            const size = document.querySelector('#size').value;
+            const color = document.querySelector('#color').value;
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        cart.push(cartItem);
-        localStorage.setItem("cart", JSON.stringify(cart));
+            if (product) {
+                const cartItem = {
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
+                    size,
+                    color,
+                    image: product.image,
+                };
 
-        Swal.fire({
-            icon: 'success',
-            title: '✅ Added!',
-            text: 'Product successfully added to cart.',
-            background: '#111',
-            color: '#fff',
-            confirmButtonColor: '#f4a300',
-            showConfirmButton: false,
-            timer: 1500
-        }).then(() => {
-            window.location.href = 'cart.html'; // Redirect to cart
-        });
-    }
-</script>
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push(cartItem);
+                localStorage.setItem('cart', JSON.stringify(cart));
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Added to Cart!',
+                    text: `${product.name} has been added to your cart.`,
+                    confirmButtonText: 'Go to Cart',
+                    showCancelButton: true,
+                    cancelButtonText: 'Continue Shopping'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = 'cart.html';
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
