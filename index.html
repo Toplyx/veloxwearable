@@ -8,88 +8,6 @@
   <meta name="author" content="Wearable">
   <title>Wearable - E-shop with clothing</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #111;
-      color: #fff;
-    }
-    header {
-      background-color: #000;
-      padding: 1rem;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin: 0;
-      padding: 0;
-    }
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    #search-input {
-      padding: 0.5rem;
-      border: none;
-      border-radius: 4px;
-    }
-    #search-btn {
-      background-color: #fff;
-      color: #000;
-      border: none;
-      padding: 0.5rem 1rem;
-      margin-left: 0.5rem;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .hero {
-      text-align: center;
-      padding: 4rem 1rem;
-      background: linear-gradient(145deg, #1a1a1a, #000);
-    }
-    .hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .btn-primary {
-      background-color: #fff;
-      color: #000;
-      padding: 0.75rem 1.5rem;
-      text-decoration: none;
-      border-radius: 4px;
-      display: inline-block;
-      margin-top: 1rem;
-    }
-    .categories {
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    .cta-text {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-    .category-buttons a {
-      margin: 0.5rem;
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: #fff;
-      color: #000;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #000;
-      color: #777;
-    }
-  </style>
 </head>
 <body>
   <!-- Header -->
@@ -100,7 +18,6 @@
         <li><a href="about.html">About us</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="cart.html">Cart</a></li>
-        <li>
           <input type="text" id="search-input" placeholder="Search products..." aria-label="Search products">
           <button id="search-btn" class="btn-primary">Search</button>
         </li>
@@ -117,18 +34,18 @@
     </div>
   </section>
 
-  <!-- Categories -->
-  <section id="categories" class="categories">
-    <div class="container">
-      <div class="cta-text">What are you looking for?</div>
-      <div class="category-buttons">
-        <a href="t-shirts.html" class="category-btn" id="tshirts-link">T-shirts</a>
-        <a href="hoodies.html" class="category-btn" id="hoodies-link">Hoodies</a>
-        <a href="limited.html" class="category-btn" id="limited-link">Limited</a>
-        <a href="everything.html" class="category-btn" id="everything-link">Everything</a>
-      </div>
+<!-- Example for T-shirt category -->
+<section id="categories" class="categories">
+  <div class="container">
+    <div class="cta-text">What are you looking for?</div>
+    <div class="category-buttons">
+      <a href="t-shirts.html" class="category-btn" id="tshirts-link">T-shirts</a>
+      <a href="hoodies.html" class="category-btn" id="hoodies-link">Hoodies</a>
+      <a href="limited.html" class="category-btn" id="limited-link">Limited</a>
+      <a href="everything.html" class="category-btn" id="everything-link">Everything</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer>
@@ -179,30 +96,38 @@
   </script>
 
   <!-- Skript: Košík -->
-  <script>
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+<script>
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    function updateCart() {
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
+  // Function to update the cart in localStorage
+  function updateCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 
-    function addToCart(product) {
-      cart.push(product);
-      updateCart();
-      alert(`Product added to cart: ${product.name}`);
-    }
+  // Function to add an item to the cart
+  function addToCart(product) {
+    cart.push(product);
+    updateCart();
+    alert(Product added to cart: ${product.name});
+  }
 
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-      button.addEventListener('click', (event) => {
-        const productElement = event.target.closest('.product');
-        const product = {
-          name: productElement.querySelector('h3').textContent,
-          price: parseFloat(productElement.querySelector('.price').textContent.replace('$', '')),
-          quantity: 1
-        };
-        addToCart(product);
-      });
+  // Add event listeners to "Add to Cart" buttons
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', (event) => {
+      const productElement = event.target.closest('.product');
+      const product = {
+        name: productElement.querySelector('h3').textContent,
+        price: parseFloat(productElement.querySelector('.price').textContent.replace('$', '')),
+        quantity: 1
+      };
+      addToCart(product);
     });
-  </script>
+  });
+</script>
+<script>
+  document.querySelector(".add-to-cart").addEventListener("click", function() {
+    alert("Product added to cart!");
+  });
+</script>
 </body>
 </html>
