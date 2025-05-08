@@ -587,5 +587,182 @@ ul li {
 .remove-btn {
     margin-top: -0.5cm; /* Moves the button 0.5cm upwards */
    }
-}
 <button class="remove-btn"
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #222;
+    padding: 1rem 2rem;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+}
+
+header nav ul li {
+    margin-right: 2rem;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #00bcd4;
+}
+
+/* Main Container Styles */
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 3rem;
+}
+
+/* Order Confirmation Header */
+#confirmation h3 {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+#order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.form-group input, .form-group select {
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border 0.3s;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #00bcd4;
+    outline: none;
+}
+
+/* Payment Method Selector */
+#payment-method {
+    background-color: #fff;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+}
+
+#payment-method option {
+    font-size: 1rem;
+}
+
+/* Payment Section Styling */
+#card-element-container, #paypal-button-container, #google-pay-button-container {
+    display: none;
+    margin-top: 2rem;
+}
+
+/* Cart Items List */
+#cart-items {
+    list-style: none;
+    padding-left: 1rem;
+    font-size: 1.1rem;
+}
+
+#cart-items li {
+    margin-bottom: 1rem;
+}
+
+/* Total Price */
+.total-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+/* Submit Button */
+.submit-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #008c9e;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    main {
+        padding: 2rem;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav ul li {
+        margin-bottom: 1rem;
+    }
+
+    .form-group input, .form-group select {
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+}
+
