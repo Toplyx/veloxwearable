@@ -6,6 +6,8 @@
     <title>Order Confirmation</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AQ5ITnVJjB10N_spmw57WohpahCvyuL5drpOwVlbnNalkj-aBYwMFdRAfegEOYHkD0-rlvMgYLv4hbiy&components=buttons"></script> <!-- PayPal -->
+    <script src="https://pay.google.com/gp/p/js/pay.js" async></script> <!-- Google Pay -->
 </head>
 <body>
     <header>
@@ -25,43 +27,68 @@
                     <label for="address">Address</label>
                     <input type="text" id="address" name="address" placeholder="Enter address" required>
                 </div>
-
+    
                 <div class="form-group">
                     <label for="phone">Phone</label>
                     <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
                 </div>
-
+    
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter email" required>
                 </div>
-
+    
                 <div class="form-group">
                     <label for="payment-method">Choose Payment Method</label>
                     <select id="payment-method" name="payment-method" required>
+                        <option value="paypal">PayPal</option>
                         <option value="card">Credit / Debit Card</option>
+                        <option value="googlepay">Google Pay</option>
                     </select>
                 </div>
-
-                <div class="form-group">
+    
+                <!-- Stripe Payment Section -->
+                <div id="card-element-container" class="form-group" style="display: none;">
                     <label for="card-element">Credit Card</label>
                     <div id="card-element"></div>
                 </div>
-
+    
+                <!-- PayPal Button Section -->
+                <div id="paypal-button-container" class="form-group" style="display: none;"></div>
+    
+                <!-- Google Pay Button Section -->
+                <div id="google-pay-button-container" class="form-group" style="display: none;"></div>
+    
                 <div class="form-group">
                     <label>Product List:</label>
                     <ul id="cart-items"></ul>
                 </div>
-
+    
                 <div class="total-price">
                     Total Amount: <span id="total-price">0 €</span>
                 </div>
-
+    
                 <button type="submit" class="submit-btn">Complete Payment</button>
                 <div class="error-message" id="error-message"></div>
             </form>
         </div>
     </main>
+    
+    <!-- JavaScript to toggle payment sections -->
+    <script>
+        document.getElementById('payment-method').addEventListener('change', function () {
+            const method = this.value;
+    
+            document.getElementById('card-element-container').style.display = method === 'card' ? 'block' : 'none';
+            document.getElementById('paypal-button-container').style.display = method === 'paypal' ? 'block' : 'none';
+            document.getElementById('google-pay-button-container').style.display = method === 'googlepay' ? 'block' : 'none';
+        });
+    
+        // Show the correct payment method section on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('payment-method').dispatchEvent(new Event('change'));
+        });
+    </script>
 
     <script>
         const stripe = Stripe('pk_test_51RBbEUQ5LEQiTTFxItmW9KjLnpyNBOTBBzoqnanY9YxEuphNFGlUUViCHYMBykCAwqwS9HXXgczRA53L9r9wi7G900hymrqJ8r');
@@ -87,6 +114,82 @@
             }
         });
 
+        // PayPal Button Initialization
+        paypal.Buttons({
+            createOrder: (data, actions) => {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalPrice
+                        }
+                    }]
+                });
+            },
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(function(details) {
+                    alert('Payment successful!');
+                    // Send email after successful PayPal payment
+                    sendConfirmationEmail();
+                    localStorage.removeItem("cart");
+                    window.location.href = "thank-you.html";
+                });
+            },
+            onError: (err) => {
+                console.error(err);
+            }
+        }).render('#paypal-button-container');
+
+        // Google Pay Button Initialization
+        const googlePayClient = new google.payments.api.PaymentsClient({
+            environment: 'TEST'  // Change this to 'PRODUCTION' when live
+        });
+
+        const googlePayButton = googlePayClient.createButton({
+            buttonColor: 'black',
+            buttonType: 'short',
+            onClick: () => {
+                console.log('Google Pay clicked');
+                // Handle Google Pay transaction
+            }
+        });
+
+        document.getElementById('google-pay-button-container').appendChild(googlePayButton);
+
+        // Function to send email after payment
+        const sendConfirmationEmail = () => {
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const phone = document.getElementById("phone").value;
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let orderDetails = `
+                Address: ${address}\n
+                Phone: ${phone}\n
+                Products:\n`;
+
+            cartItems.forEach(item => {
+                orderDetails += `${item.name} - ${item.size} - ${item.color} - ${item.price} €\n`;
+            });
+
+            orderDetails += `Total Price: ${document.getElementById("total-price").textContent}`;
+
+            fetch('http://localhost:4242/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    orderDetails
+                })
+            }).then(response => response.json())
+              .then(data => {
+                  console.log('Email sent:', data);
+              }).catch(error => {
+                  console.error('Error sending email:', error);
+              });
+        };
+
+        // Form submission
         document.getElementById("order-form").addEventListener("submit", async (event) => {
             event.preventDefault();
 
@@ -95,42 +198,48 @@
             const email = document.getElementById("email").value;
             const totalPrice = parseInt(document.getElementById("total-price").textContent.replace(' €', ''));
 
-            const { error, paymentMethod } = await stripe.createPaymentMethod({
-                type: 'card',
-                card: card,
-                billing_details: {
-                    email: email,
-                    phone: phone,
-                    address: {
-                        line1: address
+            const selectedPaymentMethod = document.getElementById("payment-method").value;
+
+            if (selectedPaymentMethod === 'card') {
+                const { error, paymentMethod } = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: card,
+                    billing_details: {
+                        email: email,
+                        phone: phone,
+                        address: {
+                            line1: address
+                        }
                     }
+                });
+
+                if (error) {
+                    document.getElementById("error-message").textContent = error.message;
+                    return;
                 }
-            });
 
-            if (error) {
-                document.getElementById("error-message").textContent = error.message;
-                return;
-            }
+                const response = await fetch('http://localhost:4242/create-payment-intent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        payment_method: paymentMethod.id,
+                        email,
+                        amount: totalPrice * 100
+                    })
+                });
 
-            const response = await fetch('http://localhost:4242/create-payment-intent', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    payment_method: paymentMethod.id,
-                    email,
-                    amount: totalPrice * 100
-                })
-            });
+                const data = await response.json();
 
-            const data = await response.json();
-
-            if (data.success) {
-                localStorage.removeItem("cart");
-                window.location.href = "thank-you.html";
-            } else {
-                document.getElementById("error-message").textContent = "Payment failed.";
+                if (data.success) {
+                    // Send email after successful payment
+                    sendConfirmationEmail();
+                    localStorage.removeItem("cart");
+                    window.location.href = "thank-you.html";
+                } else {
+                    document.getElementById("error-message").textContent = "Payment failed.";
+                }
             }
         });
     </script>
